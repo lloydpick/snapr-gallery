@@ -6,8 +6,6 @@ class CreatePhotos < ActiveRecord::Migration
       t.column "title", :string
       t.column "caption", :string
       t.column "is_visible", :boolean, :default => true
-      t.column "created_at", :datetime
-      t.column "updated_at", :datetime
       t.column "position", :integer
       t.timestamps
     end
