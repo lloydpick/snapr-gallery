@@ -35,6 +35,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
   
+  map.connect 'album', :controller => 'albums', :action => 'list'
   map.connect 'album/new', :controller => 'albums', :action => 'new'
   map.connect 'album/:permalink', :controller => 'albums', :action => 'show'
   map.connect 'album/:permalink/upload', :controller => 'images', :action => 'new'
@@ -42,6 +43,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'album/:permalink/:photolink', :controller => 'photos', :action => 'show'
 
   # Install the default routes as the lowest priority.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
 end

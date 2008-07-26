@@ -23,4 +23,8 @@ class AlbumsController < ApplicationController
     end
   end
   
+  def list
+    @albums = Album.find(:all, :conditions => { :is_visible => true })
+  end
+  
 end
