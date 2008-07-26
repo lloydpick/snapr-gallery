@@ -118,6 +118,6 @@ private
 end
 
 if Object.const_defined?(:Iconv)
-  PermalinkFu.translation_to   = 'ascii//translit//IGNORE'
+  PermalinkFu.translation_to   = 'ascii//ignore//translit'
   PermalinkFu.translation_from = 'utf-8'
 end
