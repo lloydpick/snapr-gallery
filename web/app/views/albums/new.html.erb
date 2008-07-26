@@ -1,0 +1,31 @@
+<%= error_messages_for :album %>
+
+<% form_for(:album, :url => { :action => 'new' }) do %>
+
+    <h2>Create New Album</h2>
+    <p>
+        <label for="parent_album_id">Parent Album ID:</label>
+        <%= text_field "album", "parent_album_id" %>
+    </p>
+    <p>
+        <label for="title">Title:</label>
+        <%= text_field "album", "title" %>
+    </p>
+    <p>
+        <label for="description">Description:</label>
+        <%= text_field "album", "description" %>
+    </p>
+    <p>
+        <label for="position">Position:</label>
+        <%= text_field "album", "position" %>
+    </p>
+    <p>
+        <label for="is_visible">Visible:</label>
+        True<%= radio_button_tag "album[is_visible]", "true", true, :id => 'album_is_visible' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        False<%= radio_button_tag "album[is_visible]", "false", false, :id => 'album_is_visible' %>
+    </p>
+    <p>
+        <%= submit_tag 'Create' %>
+    </p>
+<% end %>
