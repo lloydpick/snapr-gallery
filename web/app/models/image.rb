@@ -1,4 +1,6 @@
 class Image < ActiveRecord::Base
+
+  belongs_to :photo
   
   has_attachment :content_type => :image, 
                  :storage => :file_system, 
