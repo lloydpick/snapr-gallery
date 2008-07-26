@@ -2,6 +2,7 @@ class CreatePhotos < ActiveRecord::Migration
   def self.up
     create_table :photos do |t|
       t.column "album_id", :integer
+      t.column "image_id", :integer
       t.column "path", :string
       t.column "title", :string
       t.column "caption", :string
