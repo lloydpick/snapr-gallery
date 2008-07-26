@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="photography, digital photography, cameraphones, camera, hobby photography, photo, digital camera, compactflash, smartmedia, cameras, canon, nikon, olympus, fujifilm, video" name="keywords"/>
+    <meta content="width=820" name="viewport"/>
+    <link href="/favicon.ico" type="image/ico" rel="shortcut icon"/>
+    <title>flickr <%= "- " + @title unless not @title %></title>
+    <%= stylesheet_link_tag "layout.css" %>
+    <%= javascript_include_tag :defaults %>
+    <%= yield :headcontent %>
+  </head>
+  <body>
+    <a name="top"/>
+    <div id="TopBar" class="TopBar">
+    	<table cellspacing="0" border="0" class="Header">
+    		<tbody>
+    		    <tr>
+        			<td class="FlickrLogo">
+        				<a href="/">
+        				    <img width="98" height="26" alt="Flickr logo. If you click it, you'll go home" id="FlickrLogo" src="http://l.yimg.com/g/images/flickr_logo_gamma.gif.v35314.14"/>
+        				</a>
+        			</td>
+        			<td class="Status">
+        				Signed in as <a class="Pale" href="/account">lloyd.pick</a>
+                        <a style="margin-left: 20px;" href="/logout.gne?magic_cookie=e4ae79b22598dc63504dfbb8b4ec4201">Sign Out</a>
+                    </td>
+        		</tr>
+    	    </tbody>
+        </table>
+    	<table cellspacing="0" border="0" class="NavBar">
+    		<tbody>
+    		    <tr>
+    			    <td class="Primary">
+    			        <div id="candy_nav_button_bar" class="candy_button_bar">
+    			            <ul class="site_nav_menu_buttons">
+    			                <li class="no_menu_li">
+    			                    <span>
+                                        <a href="/">Home</a>
+                                    </span>
+                                </li>
+                                <li class="no_menu_li">
+    			                    <span>
+    			                        <%= link_to "Albums", { :controller => 'albums', :action => 'list' } %>
+                                    </span>
+                                </li>
+			                </ul>
+                        </div>
+                    </td>
+                    <td id="search_header_form_td" style="padding-bottom: 2px;">
+                        <form id="headersearchform">
+                            <%= text_field "search", "field", {  :id => "header_search_q", :class => "Box", :style => "color: rgb(153, 153, 153);" } %>
+                        </form>
+                    </td>
+                    <td width="72" id="search_header_button_td">
+                        <ul class="site_nav_menu_buttons">
+    		                <li class="no_menu_li">
+    		                    <span>
+                                    <a href="#">Search</a>
+                                </span>
+                            </li>
+                        </ul>       
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="Main">
+        <%= render :partial => "layouts/photosteam" %>
+        <%= yield %>
+    </div>
+  </body>
+</html>
