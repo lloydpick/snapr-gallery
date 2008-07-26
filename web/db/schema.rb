@@ -9,17 +9,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080723233527) do
+ActiveRecord::Schema.define(:version => 20080724232657) do
+
+  create_table "albums", :force => true do |t|
+    t.integer  "parent_album_id"
+    t.string   "title"
+    t.string   "description"
+    t.integer  "position"
+    t.boolean  "is_visible",      :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "images", :force => true do |t|
+    t.integer  "parent_id"
+    t.string   "content_type"
+    t.string   "filename"
+    t.string   "thumbnail"
+    t.integer  "size"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "photos", :force => true do |t|
     t.integer  "album_id"
+    t.integer  "image_id"
     t.string   "path"
     t.string   "title"
     t.string   "caption"
     t.boolean  "is_visible", :default => true
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position"
   end
 
 end
