@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
   
   def new
+    @title = "Create Album"
     # Post Request
     if request.post?
       # Create a new user
@@ -60,9 +61,11 @@ class AlbumsController < ApplicationController
     if not @album
       raise "ZOMG NO ALBUM FOUND!"
     end
+    @title = "Album - " + @album.title
   end
   
   def list
+    @title = "Album List"
     @albums = Album.find(:all, :conditions => { :is_visible => true, :parent_id => nil }, :order => "position ASC, title ASC")
   end
   

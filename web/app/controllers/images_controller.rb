@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
       
   def new
+    @title = "Upload Image"
     @image = Image.new
     @album = Album.find_by_permalink(params[:permalink])
     p = Photo.find(:all, :conditions => { :album_id => @album.id })

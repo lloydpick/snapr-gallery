@@ -17,6 +17,7 @@ class PhotosController < ApplicationController
         else
           @show_exif = false
         end
+        @title = "Photo - " + @photo.title
       else
         raise "PHOTO NOT PART OF ALBUM"
       end
@@ -35,6 +36,7 @@ class PhotosController < ApplicationController
     else
       if @photo.album.id == @album.id
         @image = Image.find_by_id(@photo.image_id)
+        @title = "Full Photo - " + @photo.title
       else
         raise "PHOTO NOT PART OF ALBUM"
       end
