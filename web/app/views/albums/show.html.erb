@@ -1,5 +1,52 @@
-<h2><%= @album.title %></h2>
-<% for @photo in @album.photos -%>
-    <% @image = Image.find_by_id(@photo.image_id) %>
-    <%= link_to image_tag(@image.public_filename(:small)), { :controller => 'photos', :action => 'show', :permalink => @album.permalink, :photolink => @photo.permalink } %>
-<% end -%>
+<table id="SubNav" width="500" cellspacing="0">
+    <tbody>
+        <tr>
+            <td class="Buddy">
+                <img width="48" height="48" alt="to your photostream page" src="/images/buddy.gif"/>
+            </td>
+            <td class="Section">
+	            <h1><%= @album.title %></h1>
+				<p class="Links">
+				    Thumbnails
+                    <img width="1" height="11" alt="" src="/images/subnavi_dots.gif"/>
+			        Detail
+                    <img width="1" height="11" alt="" src="/images/subnavi_dots.gif"/>
+		            Comments
+		        </p>
+	        </td>
+        </tr>
+    </tbody>
+</table>
+<br clear="all" />
+<div id="ViewSet">
+	<div class="vsDetails">
+        <p class="vsThumbnail">
+            <span class="photo_container pc_m">
+                <% @image = Image.find_by_id(@album.photos.first.image_id) %>
+                <%= link_to image_tag(@image.public_filename(:small), { :class => "pc_img", :width => 240, :height => 180, :id => "primary_photo_img" } ), { :controller => 'photos', :action => 'show', :permalink => @album.permalink, :photolink => @album.photos.first.permalink }, { :class => "image_link" } %>
+            </span>
+        </p>
+		<p class="vsDescription" title="Click to edit">
+		    <%= @album.description %>
+        </p>
+		<p class="vsNumbers">
+            <%= @album.photos.size %> photos
+	    </p>
+		<p class="vsNumbers">
+		    Items are from <%= @album.updated_at %>
+        </p>
+	</div>
+	<div class="vsThumbs">
+	    <div class="clearfix" id="setThumbs">
+        <% for @photo in @album.photos -%>
+            <% @image = Image.find_by_id(@photo.image_id) %>
+            <div class="setThumbs-indv">
+                <span id="photo_thumb2697091480" class="photo_container pc_s">
+                    <%= link_to image_tag(@image.public_filename(:square), { :class => "pc_img", :width => 75, :height => 75 } ), { :controller => 'photos', :action => 'show', :permalink => @album.permalink, :photolink => @photo.permalink }, { :class => "image_link" } %>
+                </span>
+            </div>
+        <% end -%>
+        </div>
+	</div>
+	<br clear="all"/>
+</div>
