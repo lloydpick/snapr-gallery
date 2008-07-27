@@ -19,10 +19,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;
         False<%= radio_button_tag "photo[is_visible]", "false", false, :id => 'photo_is_visible' %>
     </p>
-    <p>
-        <label for="position">Position:</label>
-        <%= text_field "photo", "position" %>
-    </p>
+    <%= hidden_field "photo", "position", { :value => @next } %>
   <p>
     <%= submit_tag 'Create' %>
   </p>
