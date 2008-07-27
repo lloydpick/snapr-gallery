@@ -1,0 +1,17 @@
+<br clear="all" />
+<div id="last_photo">
+    <h3 style="margin-top: 0px">Last Updated Photos</h3>
+    <% for @photo in @photos -%>
+    <div class="Sets" style="width: 100px; margin-right: 25px; padding-right: 0px">
+    	<div class="SetCaseSingle">
+    	    <div class="setLinkDiv">
+                <% @image = Image.find_by_id(@photo.image_id) %>
+                <%= link_to image_tag(@image.public_filename(:square)), { :controller => 'photos', :action => 'show', :permalink => @photo.album.permalink, :photolink => @photo.permalink }, { :class => "setLink" } %>
+            </div>
+    	</div>
+    	<h6 style="margin-top: 0px">
+            <%= link_to @photo.title, { :controller => 'photos', :action => 'show', :permalink => @photo.album.permalink, :photolink => @photo.permalink }, { :class => "Seta" } %>
+        </h6>
+    </div>
+    <% end -%>
+</div>
