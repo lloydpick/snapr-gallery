@@ -23,6 +23,12 @@ class ImagesController < ApplicationController
       @photo.position = params[:photo][:position]
       # Does it pass all validation?
       if @photo.save
+        @log = Log.new
+        @log.user = current_user
+        @log.item = "photo"
+        @log.event = "add_photo"
+        @log.identifier = @photo.id
+        @log.save!
         # Save successful, redirect to album page
         redirect_to :controller => "albums", :action => "show", :permalink => @album.permalink
       else
