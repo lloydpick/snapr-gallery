@@ -98,7 +98,7 @@ img, div { behavior: url(iepngfix.htc); }
 
 /* SECONDARY NAVI - 48 x 48 buddy icon, main page heading, one line of links underneath */
 
-#SubNav { margin-top: 25px; margin-bottom: 20px; }
+#SubNav { margin-top: 25px; margin-bottom: 20px; float: left }
 #SubNav tr { vertical-align: top; }
 #SubNav a { text-decoration: none; }
 #SubNav .Buddy { padding-right: 10px; text-align: left; vertical-align: top; }
@@ -369,9 +369,9 @@ a.bab strong {
 
 /* SEPARATORS */
 
-.Separated { margin-top: 20px; padding-top: 10px; background-image: url(http://l.yimg.com/g/images/dotted.gif); background-repeat: repeat-x; background-position: left top;}
-.Separate { margin-top: 10px; margin-bottom: 20px; padding-bottom: 10px; background-image: url(http://l.yimg.com/g/images/dotted.gif); background-repeat: repeat-x; background-position: left bottom;}
-.ThinSeparated { background-image: url(http://l.yimg.com/g/images/dotted.gif); background-repeat: repeat-x; background-position: left bottom; padding-right: 0; padding-bottom: 3px; padding-left: 0;	margin-bottom: 3px; }
+.Separated { margin-top: 20px; padding-top: 10px; background-image: url(/images/dotted.gif); background-repeat: repeat-x; background-position: left top;}
+.Separate { margin-top: 10px; margin-bottom: 20px; padding-bottom: 10px; background-image: url(/images/dotted.gif); background-repeat: repeat-x; background-position: left bottom;}
+.ThinSeparated { background-image: url(/images/dotted.gif); background-repeat: repeat-x; background-position: left bottom; padding-right: 0; padding-bottom: 3px; padding-left: 0;	margin-bottom: 3px; }
 .ThinSeparated .globe { background-color: #fff; }
 .ThinSeparated .globe img { float: left; margin-bottom: 25px; margin-right: 7px; }
 
@@ -1360,13 +1360,21 @@ img.notsowide {
 
 .bbml_set .SetCase { margin: 0; height: 91px;}
 
-.SetCase { margin-top: 5px; margin-bottom: 5px; width: 91px; height: 95px; padding: 7px 0 0 7px; background: url(http://l.yimg.com/g/images/set_case.gif) no-repeat; }
+.SetCase { margin-top: 5px; margin-bottom: 5px; width: 91px; height: 95px; padding: 7px 0 0 7px; background: url(/images/set_case.gif) no-repeat; }
 .SetCase a {text-decoration:none}
 .SetCase a:link { text-decoration:none; }
 .SetCase a:visited { text-decoration:none; }
 .SetCase a:hover { background: transparent; text-decoration:none; }
 .SetCase a:active { background: transparent; text-decoration:none; }
 .SetCase .setThumb { border: 1px solid #000; }
+
+.SetCaseSingle { margin-top: 5px; margin-bottom: 5px; width: 91px; height: 91px; padding: 7px 0 0 7px; background: url(/images/set_case_single.gif) no-repeat; }
+.SetCaseSingle a {text-decoration:none}
+.SetCaseSingle a:link { text-decoration:none; }
+.SetCaseSingle a:visited { text-decoration:none; }
+.SetCaseSingle a:hover { background: transparent; text-decoration:none; }
+.SetCaseSingle a:active { background: transparent; text-decoration:none; }
+.SetCaseSingle .setThumb { border: 1px solid #000; }
 
 .setCommentLinkDiv { margin-top:-20px; margin-left: 2px;}
 a.setLink img { border: 1px solid #000; }
@@ -1377,18 +1385,64 @@ a.setCommentLink img { border:0;}
 .Seta:hover { color: #FFFFFF; text-decoration: none; background: #0063DC; }
 .Seta:active { color: #FFFFFF; text-decoration: none; background: #0259C4; }
 
-/* faq main page */
+/* CSS Document */ 
 
-#FaqContainer h2 a { text-decoration: none; }
-#FaqContainer ol.Separate { padding-bottom: 20px; }
-/* These styles get applied if JavaScript is enabled. */
-#FaqContainer.scrumjax { width: 100%; overflow: hidden; margin: 0; }
-#FaqContainer.scrumjax h2 { margin-bottom: 6px; font-size: 14px; font-weight: bold; }
-#FaqContainer.scrumjax h2 a,
-#FaqContainer.scrumjax h2 a:hover { color: #000; background: none; }
-#FaqContainer.scrumjax .OlContainer { overflow: hidden; height: 36px; }
-#FaqContainer.scrumjax .OlContainer ol.Separate { margin-top: 0; margin-bottom: 0; padding-bottom: 0; background: none; }
-#FaqContainer.scrumjax .CatContainer a.ShowMore { display: block; margin: 4px 0 18px 40px; font-size: 11px; color: #0063DC; text-decoration: none; background: none; outline: none; -moz-outline: none -moz-mac-focusring; }
-#FaqContainer.scrumjax .CatContainer a.ShowMore:hover { text-decoration: underline; background: none; }
-#FaqContainer.scrumjax .CatContainer { margin-bottom: 16px; border-bottom: 1px dotted #dadada; }
-#FaqContainer.scrumjax div.col { float: left; display: inline; width: 45%; margin-left: 35px; }
+
+/* SINGLE SET PAGE 
+-------------------------------------------------------------------------------------------------------------------------*/
+
+/* Candy Nav Bar */
+	#candy_set_other_button_bar{
+		display:inline !important;
+	}
+
+	#candy_set_other_button_bar .candy_menu {display:none; position:absolute; border:1px solid #D6DED7; background-color:white;}
+
+	#candy_set_other_button_bar .candy_menu a, #candy_set_other_button_bar .candy_menu a:link {display:block; margin:1px; padding:4px; font: normal 11px; text-decoration:none !important; color:black !important;}
+	#candy_set_other_button_bar .candy_menu a:hover{ color: #FFFFFF !important; background: #0063DC; }
+	#candy_set_other_button_bar .candy_menu a:active{ color: #FFFFFF !important; background: #0063DC; }
+	
+/* new Candy set Nav Bar */
+
+	#gray_set_button_bar {background-color:#fff; height:26px; background: url(http://l.yimg.com/g/images/candy_button_bar_bg.gif) repeat left top; }
+	.old_delete_placement {float:right !important;}
+
+	#gray_set_button_bar .candy_menu {display:none; position:absolute; border:1px solid #D6DED7; background-color:white; width:180px;}
+
+	#gray_set_button_bar .candy_menu a, #gray_set_button_bar .candy_menu a:link {display:block; margin:1px; padding:4px; font: normal 11px;	text-decoration:none !important; color:black !important;}
+	#gray_set_button_bar .candy_menu a:hover { color: #FFFFFF !important; background: #0063DC !important; }
+	#gray_set_button_bar .candy_menu a:active { color: #FFFFFF !important; background: #0063DC !important; }
+	
+	#gray_set_button_bar {margin-top:25px;margin-bottom:0}
+
+
+/* Set View */
+
+
+#setCrumbs {margin:20px 0 -20px 0}
+#setCrumbs .scTopCrumb {white-space:nowrap}
+#setCrumbs td {vertical-align:top;color:#666}
+#setCrumbs ul.setCrumbsList, #setCrumbs li.setCrumbsItem {margin:0;padding:0;list-style:none;line-height:14px}
+#setCrumbs li.setCrumbsItem {padding-bottom:4px;text-indent:-.5em;padding-left:.5em}
+#SetCrumbs li.scBullet {padding-left:.8em}
+#setCrumbs .scTopCrumbShareSlideshow {padding-top:10px;}
+
+#ViewSet {width: 760px;}
+#ViewSet .vsDetails {width:280px;float:left;overflow: hidden;}
+#ViewSet .vsThumbnail {margin:0;background:#f5f5f5;text-align:center;padding:20px 0;}
+#ViewSet .vsThumbnail img {padding:1px;}
+
+#ViewSet .vsDescription {margin-left:21px;margin-right:20px;overflow: hidden;}
+#ViewSet .vsNumbers, #ViewSet .vsGuestPasses {font-size:11px;color:#999;margin-left:21px}
+
+
+#ViewSet .vsThumbs {width:468px;float:right;}
+#ViewSet .vsThumbs img {margin:  0 0 0 3px;}
+
+#ViewSet .vsComments {width:400px;float:left;margin-left:60px;}
+#ViewSet .vsComments h3 {margin-top:0}
+
+.SetComments {}
+.SetComments tr { vertical-align: top; }
+.SetComments .HeyBuddy { padding-right: 5px;}
+.SetComments .Comment { padding-bottom: 15px; }

@@ -1,0 +1,89 @@
+/* facebook style stream */
+#stream
+{
+    margin-top:25px;
+    float: right;
+    font-size: 11px;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+}
+
+#stream .top
+{
+    width: 300px;
+    height: 5px;
+    background-image: url(/images/stream_top.gif);
+}
+
+#stream .middle
+{
+    width: 280px;
+    background-image: url(/images/stream_middle.gif);
+    background-repeat: repeat-y;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#stream .bottom
+{
+    width: 300px;
+    height: 5px;
+    background-image: url(/images/stream_bottom.gif);
+}
+
+#stream .middle .title
+{
+    width: 270px;
+    padding-top: 5px;
+    font-weight: bold;
+    border-bottom:1px solid #CCCCCC;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+#stream .middle .log
+{
+    padding-bottom: 5px;
+}
+
+#stream .middle .log .add_photo
+{
+    background-image: url(/images/icons/photo_add.gif);
+    background-repeat: no-repeat;
+    padding-left: 23px;
+    min-height: 16px;
+}
+
+#stream .middle .log .edit_photo
+{
+    background-image: url(/images/icons/photo_edit.gif);
+    background-repeat: no-repeat;
+    padding-left: 23px;
+    min-height: 16px;
+}
+
+#stream .middle .log .add_album
+{
+    background-image: url(/images/icons/album_add.gif);
+    background-repeat: no-repeat;
+    padding-left: 23px;
+    min-height: 16px;
+}
+
+#stream .middle .log .edit_album
+{
+    background-image: url(/images/icons/album_edit.gif);
+    background-repeat: no-repeat;
+    padding-left: 23px;
+    min-height: 16px;
+}
+
+#stream_entry
+{
+    padding-bottom: 5px;
+}
+
+#stream_entry .time
+{
+    font-size: 9px;
+    color: #777777;
+}
