@@ -1,0 +1,16 @@
+<%= error_messages_for :user %>
+
+<% form_for(:user, :url => { :action => :login }) do %>
+    <h2>Login</h2>
+    <p>
+        <label for="emailaddress">E-Mail Address:</label>
+        <%= text_field "user", "emailaddress" %>
+    </p>
+    <p>
+        <label for="password">Password:</label>
+        <%= password_field "user", "password" %>
+    </p>
+    <p>
+        <%= submit_tag 'Login' %>
+    </p>
+<% end %>
