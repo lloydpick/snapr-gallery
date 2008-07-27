@@ -35,6 +35,13 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
   
+  map.connect '', :controller => 'home', :action => 'home'
+  
+  map.connect 'signin', :controller => 'users', :action => 'login'
+  map.connect 'signout', :controller => 'users', :action => 'logout'
+  map.connect 'login', :controller => 'users', :action => 'login'
+  map.connect 'logout', :controller => 'users', :action => 'logout'
+  
   map.connect 'album', :controller => 'albums', :action => 'list'
   map.connect 'album/new', :controller => 'albums', :action => 'new'
   map.connect 'album/:permalink', :controller => 'albums', :action => 'show'

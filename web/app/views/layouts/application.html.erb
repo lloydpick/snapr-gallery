@@ -7,11 +7,11 @@
     <link href="/favicon.ico" type="image/ico" rel="shortcut icon"/>
     <title>flickr <%= "- " + @title unless not @title %></title>
     <%= stylesheet_link_tag "layout.css" %>
+    <%= stylesheet_link_tag "custom.css" %>
     <%= javascript_include_tag :defaults %>
     <%= yield :headcontent %>
   </head>
   <body>
-    <a name="top"/>
     <div id="TopBar" class="TopBar">
     	<table cellspacing="0" border="0" class="Header">
     		<tbody>
@@ -22,8 +22,13 @@
         				</a>
         			</td>
         			<td class="Status">
-        				Signed in as <a class="Pale" href="/account">lloyd.pick</a>
-                        <a style="margin-left: 20px;" href="/logout.gne?magic_cookie=e4ae79b22598dc63504dfbb8b4ec4201">Sign Out</a>
+        			    <% if current_user %>
+            				Signed in as <a class="Pale" href="/account"><%= current_user.username %></a>
+                            <%= link_to "Sign Out", { :controller => 'users', :action => 'logout' }, { :style => "margin-left: 20px;" } %>
+                        <% else %>
+                            You aren't signed in heathen!
+                            <%= link_to "Sign In", { :controller => 'users', :action => 'login' }, { :style => "margin-left: 20px;" } %>
+                        <% end %>
                     </td>
         		</tr>
     	    </tbody>
@@ -67,6 +72,7 @@
     </div>
     <div id="Main">
         <%= render :partial => "layouts/photosteam" %>
+        <%= render :partial => "logs/stream" %>
         <%= yield %>
     </div>
   </body>
