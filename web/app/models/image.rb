@@ -5,7 +5,7 @@ class Image < ActiveRecord::Base
   has_attachment :content_type => :image, 
                  :storage => :file_system, 
                  :max_size => 5.megabytes,
-                 :resize_to => '1024x768>',
+                 :resize_to => 's1024x768>',
                  :keep_profile => true,
                  :thumbnails => { 
                                   :square => 'c75x75',

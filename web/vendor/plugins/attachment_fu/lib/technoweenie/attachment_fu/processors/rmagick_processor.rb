@@ -64,7 +64,7 @@ module Technoweenie # :nodoc:
           end
           img.strip! unless attachment_options[:keep_profile]
           if compress && !self.thumbnail
-            self.temp_path = write_to_temp_file(img.to_blob {self.quality = 75})
+            self.temp_path = write_to_temp_file(img.to_blob {self.quality = 100})
           elsif self.thumbnail
             self.temp_path = write_to_temp_file(img.to_blob {self.quality = 100})
           else
