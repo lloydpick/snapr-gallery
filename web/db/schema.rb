@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080726015357) do
+ActiveRecord::Schema.define(:version => 20080726155258) do
 
   create_table "albums", :force => true do |t|
     t.integer  "parent_album_id"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(:version => 20080726015357) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "permalink",  :limit => 200
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "emailaddress"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
