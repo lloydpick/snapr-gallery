@@ -87,3 +87,45 @@
     font-size: 9px;
     color: #777777;
 }
+
+#info
+{
+    float:right;
+    width: 260px;
+    margin-top: 70px;
+}
+ 
+#info .basic
+{
+    color:#666666;
+    font-size:11px;
+    padding:2px;
+}
+
+#info .copyright
+{
+    color:#666666;
+    font-size:11px;
+    margin-bottom:10px;
+    padding-left: 18px;
+    padding-top: 1px;
+    background-image: url(/images/icon_all_rights.gif);
+    background-repeat: no-repeat;
+}
+
+#info .exif
+{
+    color:#999999;
+    font-size:11px;
+    line-height:15px;
+    list-style-type:circle;
+    margin-left:-21px;
+}
+
+#info h4
+{
+    color:#666666;
+    font-size:14px;
+    font-weight:normal;
+    margin-bottom:10px;
+}
