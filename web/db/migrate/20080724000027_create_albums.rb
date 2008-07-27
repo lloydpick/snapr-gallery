@@ -1,7 +1,7 @@
 class CreateAlbums < ActiveRecord::Migration
   def self.up
     create_table :albums do |t|
-      t.column "parent_album_id", :integer
+      t.column "parent_id", :integer
       t.column "title", :string
       t.column "description", :string
       t.column "position", :integer
