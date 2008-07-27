@@ -1,0 +1,24 @@
+<div id="last_albums">
+    <h3 style="margin-top: 0px">Last Updated Albums</h3>
+    <% for @album in @albums -%>
+    <div class="Sets" style="width: 119px">
+    	<div class="SetCase">
+    	    <div class="setLinkDiv">
+    	        <% if @album.photos.count > 0 %>
+                    <% @image = Image.find_by_id(@album.photos.first.image_id) %>
+                    <%= link_to image_tag(@image.public_filename(:square)), { :controller => 'albums', :action => 'show', :permalink => @album.permalink }, { :class => "setLink" } %>
+                <% end %>
+            </div>
+    	</div>
+    	<h4>
+            <%= link_to @album.title, { :controller => 'albums', :action => 'show', :permalink => @album.permalink }, { :class => "Seta" } %>
+        </h4>
+    	<p>
+    	    <b><%= @album.photos.count %></b> photos | 
+            <a class="Plain" href="/photos/organize/?start_tab=one_set72157606335556094" title="Edit this set as a batch?">
+                Edit
+            </a>
+        </p>	
+    </div>
+    <% end -%>
+</div>
