@@ -1,0 +1,30 @@
+<% if @no_float %>
+<div id="child_albums" style="float: left; width: 800px;">
+<% else %>
+<div id="child_albums" style="float: right; width: 120px; margin-top: 25px">
+<% end %>
+    <% if @album.children.size > 0%>
+    <h3 style="margin-top: 0px">Sub-Albums</h3>
+    <% end %>
+    <% @album.children.each do |child| %>
+    <div class="Sets" style="width: 119px; height: 180px">
+    	<div class="SetCase">
+    	    <div class="setLinkDiv">
+    	        <% if child.photos.count > 0 %>
+                    <% @image = Image.find_by_id(child.photos.first.image_id) %>
+                    <%= link_to image_tag(@image.public_filename(:square)), { :controller => 'albums', :action => 'show', :permalink => child.permalink }, { :class => "setLink" } %>
+                <% end %>
+            </div>
+    	</div>
+    	<h4>
+            <%= link_to child.title, { :controller => 'albums', :action => 'show', :permalink => child.permalink }, { :class => "Seta" } %>
+        </h4>
+    	<p>
+    	    <b><%= child.photos.count %></b> photos | 
+            <a class="Plain" href="/photos/organize/?start_tab=one_set72157606335556094" title="Edit this set as a batch?">
+                Edit
+            </a>
+        </p>	
+    </div>
+    <% end -%>
+</div>
