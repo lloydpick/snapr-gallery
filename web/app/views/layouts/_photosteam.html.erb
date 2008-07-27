@@ -6,7 +6,12 @@
                 <img width="48" height="48" alt="to your photostream page" src="/images/buddy.gif"/>
             </td>
             <td class="Section">
-	            <h1>The gallery <small><%= Photo.find(:all).size %> items</small></h1>
+	            <h1>
+	                The gallery
+                    <small>
+                        <%= Photo.find(:all).size %> photos contained within <%= Album.find(:all).size %> albums
+                    </small>
+                </h1>
 				<p class="Links">
 				    <%= link_to "Albums", { :controller => 'albums', :action => 'list' } %>
                     <img width="1" height="11" alt="" src="/images/subnavi_dots.gif"/>
