@@ -1,1 +1,43 @@
-<%= image_tag(@image.public_filename(:medium)) %>
+<div id="info">
+    <div class="basic">
+        Uploaded on <%= @photo.created_at.strftime("%b %d, %Y")%>
+    </div>
+    <div class="copyright">
+        All rights reserved
+    </div>
+    <h4>Additional Information</h4>
+    <% if @show_exif %>
+        <ul>
+            <% if @image.date_taken %>
+                <li class="exif">Taken on <%= @image.date_taken %></li>
+            <% end %>
+            <% if @image.model %>
+                <li class="exif">Taken with an <%= @image.model %></li>
+            <% end %>
+            <% if @image.make %>
+                <li class="exif">Camera made by <%= @image.make %></li>
+            <% end %>
+            <% if @image.flash %>
+                <li class="exif"><%= @image.flash %></li>
+            <% end %>
+        </ul>
+    <% else %>
+        <ul>
+            <li class="exif">None Available</li>
+        </ul>
+    <% end %>
+</div>
+<div style="width: 500px">
+    <h1><%= @photo.title %></h1>
+    <%= link_to image_tag(@image.public_filename(:medium)), { :action => "show_full", :permalink => @photo.album.permalink, :photolink => @photo.permalink }, { :style => "background-color: white" } %>
+    <% if (@photo.first?) || (not @photo.last?) %>
+        <div style="float: right">
+            <%= link_to "Next", :action => "show", :permalink => @photo.album.permalink, :photolink => Photo.find_by_position(@photo.position+1, :conditions => { :album_id => @photo.album.id }).permalink %>
+        </div>
+    <% end %>
+    <% if (@photo.last?) || (not @photo.first?) %>
+        <div>
+            <%= link_to "Previous", :action => "show", :permalink => @photo.album.permalink, :photolink => Photo.find_by_position(@photo.position-1, :conditions => { :album_id => @photo.album.id }).permalink %>
+        </div>
+    <% end %>
+</div>

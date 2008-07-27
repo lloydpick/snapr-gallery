@@ -70,7 +70,11 @@
             </tbody>
         </table>
     </div>
+    <% if @go_wide %>
+    <div id="Main" class="wide">
+    <% else %>
     <div id="Main">
+    <% end %>
         <%= render :partial => "logs/stream" %>
         <%= render :partial => "layouts/photosteam" %>
         <%= yield %>

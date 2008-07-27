@@ -48,6 +48,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'album/:permalink/upload', :controller => 'images', :action => 'new'
   map.connect 'album/:permalink/upload/process', :controller => 'images', :action => 'create'
   map.connect 'album/:permalink/:photolink', :controller => 'photos', :action => 'show'
+  map.connect 'album/:permalink/:photolink/full', :controller => 'photos', :action => 'show_full'
 
   # Install the default routes as the lowest priority.
   #map.connect ':controller/:action/:id'
