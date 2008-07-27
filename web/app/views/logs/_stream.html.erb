@@ -2,7 +2,7 @@
 <div id="stream">
     <div class="top"></div>
     <div class="middle">
-        <div class="title">Site Stream</div>
+        <div class="title" title="Move along, nothing stolen from facebook here, move along...">Site Stream</div>
         <div class="log">
             <% @logs = Log.find(:all, :limit => 20, :order => "id DESC") %>
             <% for entry in @logs -%>
