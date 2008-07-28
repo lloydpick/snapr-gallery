@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => 'a6dadfb86cdba17446a85c5dec78120b'
+  #protect_from_forgery # :secret => 'a6dadfb86cdba17446a85c5dec78120b'
   
   # See ActionController::Base for details 
   # Uncomment this to filter the contents of submitted sensitive data parameters
@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
   # session[:user_id] via the set_current_user method below.  The first time
   # during a request that we need the user object, we'll grab it from the db,
   # and cache it in the class variable
+  def logged_in?
+    current_user ? true : false;
+  end
+  helper_method :logged_in?
+  
   def current_user
     @current_user ||= (session[:user_id] ? User.find_by_id(session[:user_id]) : nil)
   end
