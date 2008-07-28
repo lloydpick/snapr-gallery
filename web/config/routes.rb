@@ -46,6 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'album/new', :controller => 'albums', :action => 'new'
   map.connect 'album/:permalink', :controller => 'albums', :action => 'show'
   map.connect 'album/:permalink/upload', :controller => 'images', :action => 'new'
+  map.connect 'album/:permalink/swfupload/:id', :controller => 'images', :action => 'swfupload'
   map.connect 'album/:permalink/upload/process', :controller => 'images', :action => 'create'
   map.connect 'album/:permalink/:photolink', :controller => 'photos', :action => 'show'
   map.connect 'album/:permalink/:photolink/full', :controller => 'photos', :action => 'show_full'
