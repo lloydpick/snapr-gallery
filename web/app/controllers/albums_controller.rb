@@ -1,5 +1,7 @@
 class AlbumsController < ApplicationController
   
+  before_filter :login_required, :only => ["new"]
+  
   def new
     @title = "Create Album"
     # Post Request

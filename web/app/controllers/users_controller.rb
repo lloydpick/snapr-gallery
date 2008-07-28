@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  before_filter :login_required, :only => ["logout"]
+  
   def login
     @title = "Sign-in"
     if request.post?
