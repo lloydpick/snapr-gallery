@@ -52,38 +52,6 @@
                 </span>
             </div>
         <% end -%>
-        <% for @photo in @album.photos -%>
-            <% @image = Image.find_by_id(@photo.image_id) %>
-            <div class="setThumbs-indv">
-                <span id="photo_thumb2697091480" class="photo_container pc_s">
-                    <%= link_to image_tag(@image.public_filename(:square), { :class => "pc_img", :width => 75, :height => 75 } ), { :controller => 'photos', :action => 'show', :permalink => @album.permalink, :photolink => @photo.permalink }, { :class => "image_link" } %>
-                </span>
-            </div>
-        <% end -%>
-        <% for @photo in @album.photos -%>
-            <% @image = Image.find_by_id(@photo.image_id) %>
-            <div class="setThumbs-indv">
-                <span id="photo_thumb2697091480" class="photo_container pc_s">
-                    <%= link_to image_tag(@image.public_filename(:square), { :class => "pc_img", :width => 75, :height => 75 } ), { :controller => 'photos', :action => 'show', :permalink => @album.permalink, :photolink => @photo.permalink }, { :class => "image_link" } %>
-                </span>
-            </div>
-        <% end -%>
-        <% for @photo in @album.photos -%>
-            <% @image = Image.find_by_id(@photo.image_id) %>
-            <div class="setThumbs-indv">
-                <span id="photo_thumb2697091480" class="photo_container pc_s">
-                    <%= link_to image_tag(@image.public_filename(:square), { :class => "pc_img", :width => 75, :height => 75 } ), { :controller => 'photos', :action => 'show', :permalink => @album.permalink, :photolink => @photo.permalink }, { :class => "image_link" } %>
-                </span>
-            </div>
-        <% end -%>
-        <% for @photo in @album.photos -%>
-            <% @image = Image.find_by_id(@photo.image_id) %>
-            <div class="setThumbs-indv">
-                <span id="photo_thumb2697091480" class="photo_container pc_s">
-                    <%= link_to image_tag(@image.public_filename(:square), { :class => "pc_img", :width => 75, :height => 75 } ), { :controller => 'photos', :action => 'show', :permalink => @album.permalink, :photolink => @photo.permalink }, { :class => "image_link" } %>
-                </span>
-            </div>
-        <% end -%>
         </div>
 	</div>
 </div>
