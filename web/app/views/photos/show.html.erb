@@ -1,6 +1,9 @@
 <div id="info">
+    <h4 style="margin-top: 0">Photo Information</h4>
     <div class="basic">
-        Uploaded on <%= @photo.created_at.strftime("%b %d, %Y")%>
+        Part of the <%= link_to @photo.album.title, { :controller => 'albums', :action => 'show', :permalink => @photo.album.permalink } %> album<br />
+        Uploaded on <%= @photo.created_at.strftime("%b %d, %Y at %H:%I") %><br />
+        Picture <%= @photo.position %> of <%= Photo.find(:first, :conditions => { :album_id => @photo.album.id }, :order => "position DESC").position %>
     </div>
     <div class="copyright">
         All rights reserved
@@ -32,12 +35,12 @@
     <%= link_to image_tag(@image.public_filename(:medium)), { :action => "show_full", :permalink => @photo.album.permalink, :photolink => @photo.permalink }, { :style => "background-color: white" } %>
     <% if (@photo.first?) || (not @photo.last?) %>
         <div style="float: right">
-            <%= link_to "Next", :action => "show", :permalink => @photo.album.permalink, :photolink => Photo.find_by_position(@photo.position+1, :conditions => { :album_id => @photo.album.id }).permalink %>
+            <%= link_to image_tag("/images/right.gif"), { :action => "show", :permalink => @photo.album.permalink, :photolink => Photo.find_by_position(@photo.position+1, :conditions => { :album_id => @photo.album.id }).permalink }, { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
         </div>
     <% end %>
     <% if (@photo.last?) || (not @photo.first?) %>
         <div>
-            <%= link_to "Previous", :action => "show", :permalink => @photo.album.permalink, :photolink => Photo.find_by_position(@photo.position-1, :conditions => { :album_id => @photo.album.id }).permalink %>
+            <%= link_to image_tag("/images/left.gif"), { :action => "show", :permalink => @photo.album.permalink, :photolink => Photo.find_by_position(@photo.position-1, :conditions => { :album_id => @photo.album.id }).permalink }, { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
         </div>
     <% end %>
 </div>
