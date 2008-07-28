@@ -15,7 +15,9 @@ class ImagesController < ApplicationController
   end
   
   def swfupload
-    sleep(5)
+    if RUBY_PLATFORM =~ /mswin/i
+      sleep(5)
+    end
     # swfupload action set in routes.rb
     @album = Album.find_by_permalink(params[:permalink])
     @image = Image.new :uploaded_data => params[:Filedata]
@@ -59,7 +61,9 @@ class ImagesController < ApplicationController
   end
   
   def create
-    sleep(5)
+    if RUBY_PLATFORM =~ /mswin/i
+      sleep(5)
+    end
     @album = Album.find_by_permalink(params[:permalink])
     @image = Image.new(params[:image])
     if @image.save
