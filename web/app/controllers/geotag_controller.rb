@@ -7,7 +7,7 @@ class GeotagController < ApplicationController
     # Post Request
     if request.post?
       # Create a new user
-      @geotag = Geotag.new(params[:album])
+      @geotag = Geotag.new(params[:geotag])
       # Does it pass all validation?
       if @geotag.save
         
