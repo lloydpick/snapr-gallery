@@ -77,6 +77,22 @@
     min-height: 16px;
 }
 
+#stream .middle .log .add_geotag
+{
+    background-image: url(/images/icons/geotag_add.gif);
+    background-repeat: no-repeat;
+    padding-left: 23px;
+    min-height: 16px;
+}
+
+#stream .middle .log .edit_geotag
+{
+    background-image: url(/images/icons/geotag_edit.gif);
+    background-repeat: no-repeat;
+    padding-left: 23px;
+    min-height: 16px;
+}
+
 #stream_entry
 {
     padding-bottom: 5px;
