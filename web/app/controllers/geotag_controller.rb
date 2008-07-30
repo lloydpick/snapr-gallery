@@ -32,9 +32,9 @@ class GeotagController < ApplicationController
   end
   
   def show
-    @geotags = Geotag.find_by_id(params[:id])
-    if @geotags != nil
-      @title = "Showing Geotag Location - " + @geotags.description
+    @geotag = Geotag.find_by_id(params[:id])
+    if @geotag != nil
+      @title = "Showing Geotag Location - " + @geotag.description
       @map = GMap.new("map_div")
       @map.control_init(:large_map => true,:map_type => true)
       @map.set_map_type_init(GMapType::G_HYBRID_MAP);
