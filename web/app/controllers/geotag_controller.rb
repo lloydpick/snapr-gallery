@@ -34,11 +34,12 @@ class GeotagController < ApplicationController
   def show
     @geotag = Geotag.find_by_id(params[:id])
     if @geotag != nil
-      @title = "Showing Geotag Location - " + @geotag.description
+      @title = "Showing Geotag Location"
       @map = GMap.new("map_div")
       @map.control_init(:large_map => true,:map_type => true)
       @map.set_map_type_init(GMapType::G_HYBRID_MAP);
       @map.center_zoom_init([@geotag.latitude,@geotag.longitude],@geotag.zoom)
+      @map.overlay_init(GMarker.new([@geotag.latitude,@geotag.longitude], :title => "Geotag Location", :info_window => @geotag.description))
     else
       redirect_to :action => "list"
     end
