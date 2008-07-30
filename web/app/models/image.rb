@@ -122,7 +122,7 @@ class Image < ActiveRecord::Base
       else
         sigma = 3.8
       end
-      img = img.sharpen(1, sigma)
+      #img = img.sharpen(1, sigma)
       # We need to save the resized image in the same way the
       # orignal does.
       self.temp_path = write_to_temp_file(img.to_blob {self.quality = 100})
@@ -139,7 +139,7 @@ class Image < ActiveRecord::Base
       else
         sigma = 3.8
       end
-      img = img.sharpen(1, sigma)
+      #img = img.sharpen(1, sigma)
       super
     else
       super # Otherwise let attachment_fu handle it
