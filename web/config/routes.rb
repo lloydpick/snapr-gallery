@@ -54,6 +54,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'geotag', :controller => 'geotag', :action => 'list'
   map.connect 'geotag/new', :controller => 'geotag', :action => 'new'
+  map.connect 'geotag/:id', :controller => 'geotag', :action => 'show'
 
   # Install the default routes as the lowest priority.
   #map.connect ':controller/:action/:id'
