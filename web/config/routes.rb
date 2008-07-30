@@ -52,6 +52,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'album/:permalink/:photolink/full', :controller => 'photos', :action => 'show_full'
   map.connect 'album/:permalink/:photolink/location', :controller => 'photos', :action => 'location'
 
+  map.connect 'geotag', :controller => 'geotag', :action => 'list'
+  map.connect 'geotag/new', :controller => 'geotag', :action => 'new'
+
   # Install the default routes as the lowest priority.
   #map.connect ':controller/:action/:id'
   #map.connect ':controller/:action/:id.:format'
