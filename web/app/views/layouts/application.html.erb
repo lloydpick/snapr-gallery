@@ -12,6 +12,10 @@
     <%= javascript_include_tag :defaults %>
     <%= javascript_include_tag 'swfupload' %>
     <%= javascript_include_tag 'handlers' %>
+    <% if @map %>
+        <%= GMap.header %>
+        <%= @map.to_html %>
+    <% end %>
     <%= yield :headcontent %>
   </head>
   <body>

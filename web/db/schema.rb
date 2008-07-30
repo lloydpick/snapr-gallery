@@ -9,17 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080726155258) do
+ActiveRecord::Schema.define(:version => 20080726162915) do
 
   create_table "albums", :force => true do |t|
-    t.integer  "parent_album_id"
+    t.integer  "parent_id"
     t.string   "title"
     t.string   "description"
     t.integer  "position"
-    t.boolean  "is_visible",                     :default => true
+    t.boolean  "is_visible",                 :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "permalink",       :limit => 200
+    t.string   "permalink",   :limit => 200
   end
 
   create_table "images", :force => true do |t|
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(:version => 20080726155258) do
     t.integer  "size"
     t.integer  "width"
     t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "logs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "item"
+    t.string   "event"
+    t.integer  "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

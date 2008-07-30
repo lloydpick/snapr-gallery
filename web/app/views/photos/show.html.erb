@@ -29,6 +29,17 @@
             <li class="exif">None Available</li>
         </ul>
     <% end %>
+    <% if @photo.geotag != nil %>
+    <h4>Geotagging Information</h4>
+    <ul>
+        <% if @photo.geotag.description != nil %>
+            <li class="exif"><%= @photo.geotag.description %></li>
+        <% end %>
+        <li class="exif">Latitude: <%= @photo.geotag.latitude %></li>
+        <li class="exif">Longitude: <%= @photo.geotag.longitude %></li>
+        <li style="list-style-type: none" class="exif"><%= link_to 'View on Google Maps', { :action => 'location', :permalink => @photo.album.permalink, :photolink => @photo.permalink } %></li>
+    </ul>
+    <% end %>
 </div>
 <div style="width: 500px">
     <h1><%= @photo.title %></h1>
