@@ -1,8 +1,8 @@
 <%= error_messages_for :album %>
 
-<% form_for(:album, :url => { :action => 'new' }) do %>
+<% form_for(:album, :url => { :action => 'edit', :id => @album.id }) do %>
 
-    <h2>Create New Album</h2>
+    <h2>Edit Album</h2>
     <p>
         <label for="parent_id">Parent Album:</label>
         <%= select("album", "parent_id", Album.find(:all).collect {|p| [ p.title, p.id ] }, {:include_blank => 'None'}) %>
@@ -22,7 +22,11 @@
         False<%= radio_button_tag "album[is_visible]", "false", false, :id => 'album_is_visible' %>
     </p>
     <p>
-        <%= hidden_field "album", "position", { :value => @next } %>
-        <%= submit_tag 'Create' %>
+        <label for="permalink">Permalink:</label>
+        <%= text_field "album", "permalink" %>
+    </p>
+    <p>
+        <%= hidden_field "album", "id" %>
+        <%= submit_tag 'Save' %>
     </p>
 <% end %>

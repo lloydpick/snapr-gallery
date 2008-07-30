@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   
-  before_filter :login_required, :only => ["new"]
+  before_filter :login_required, :only => ["new", "edit"]
   
   def new
     @title = "Create Album"
@@ -69,6 +69,27 @@ class AlbumsController < ApplicationController
   def list
     @title = "Album List"
     @albums = Album.find(:all, :conditions => { :is_visible => true, :parent_id => nil }, :order => "position ASC, title ASC")
+  end
+  
+  def list_text
+    @title = "Album Text List"
+    @albums = Album.find(:all, :conditions => { :is_visible => true, :parent_id => nil }, :order => "position ASC")
+  end
+  
+  def edit
+    @title = "Album Edit"
+   
+    if request.post?
+      @album = Album.find_by_id(params[:album][:id])
+      @album.attributes = params[:album]
+  
+      if @album.save
+        redirect_to :action => "list"
+      end
+    else
+      @album = Album.find_by_permalink(params[:permalink])
+    end
+    
   end
   
 end

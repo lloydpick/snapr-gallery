@@ -1,0 +1,1 @@
+<%= tree_ul(@albums) {|item| link_to h(item.title), :action => 'show', :permalink => item.permalink} %>
