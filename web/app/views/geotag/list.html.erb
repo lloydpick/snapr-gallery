@@ -1,6 +1,6 @@
 <br clear="all"/>
-<div style="font-size: 11px">
+<div style="font-size: 12px">
 <% for @geotag in @geotags -%>
-    <%= @geotag.description %> - <%= link_to @geotag.latitude + ", " + @geotag.longitude, { :action => 'show', :id => @geotag.id } %><br />
+    <%= @geotag.description %> - <%= link_to @geotag.latitude.to_s + ", " + @geotag.longitude.to_s, { :action => 'show', :id => @geotag.id } %><br />
 <% end %>
 </div>
