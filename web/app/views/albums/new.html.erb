@@ -5,7 +5,10 @@
     <h2>Create New Album</h2>
     <p>
         <label for="parent_id">Parent Album:</label>
-        <%= select("album", "parent_id", Album.find(:all).collect {|p| [ p.title, p.id ] }, {:include_blank => 'None'}) %>
+        <select id="album_parent_id" name="album[parent_id]">
+          <option value="">None</option>
+          <%= options_from_tree_for_select(Album.find_roots, :id, :title) %>
+        </select>
     </p>
     <p>
         <label for="title">Title:</label>

@@ -55,6 +55,7 @@ class AlbumsController < ApplicationController
       else
         @next = a.last.position+1
       end
+      @albums = Album.find(:all, :conditions => { :is_visible => true, :parent_id => nil }, :order => "position ASC")
     end
   end
   

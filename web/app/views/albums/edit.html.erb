@@ -5,7 +5,14 @@
     <h2>Edit Album</h2>
     <p>
         <label for="parent_id">Parent Album:</label>
-        <%= select("album", "parent_id", Album.find(:all).collect {|p| [ p.title, p.id ] }, {:include_blank => 'None'}) %>
+        <select id="album_parent_id" name="album[parent_id]">
+          <option value="">None</option>
+          <% if @album.parent %>
+              <%= options_from_tree_for_select(Album.find_roots, :id, :title, @album.parent.id) %>
+          <% else %>
+              <%= options_from_tree_for_select(Album.find_roots, :id, :title) %>
+          <% end %>
+        </select>
     </p>
     <p>
         <label for="title">Title:</label>
