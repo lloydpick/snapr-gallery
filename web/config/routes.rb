@@ -43,7 +43,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'logout', :controller => 'users', :action => 'logout'
   
   map.connect 'album', :controller => 'albums', :action => 'list'
-  map.connect 'album/list', :controller => 'albums', :action => 'list_text'
+  map.connect 'album/map', :controller => 'albums', :action => 'list_text'
   map.connect 'album/new', :controller => 'albums', :action => 'new'
   map.connect 'album/:permalink', :controller => 'albums', :action => 'show'
   map.connect 'album/:permalink/edit', :controller => 'albums', :action => 'edit'
