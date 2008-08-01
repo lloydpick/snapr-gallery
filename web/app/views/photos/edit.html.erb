@@ -1,0 +1,43 @@
+<%= error_messages_for :photo %>
+
+<% form_for(:photo, :url => { :action => 'edit', :id => @photo.id }) do %>
+
+    <h2>Edit Photo</h2>
+    <p>
+        <label for="album_id">Album:</label>
+        <select id="photo_album_id" name="photo[album_id]">
+          <option value="">None</option>
+          <% if @photo.album %>
+              <%= options_from_tree_for_select(Album.find_roots, :id, :title, @photo.album.id) %>
+          <% else %>
+              <%= options_from_tree_for_select(Album.find_roots, :id, :title) %>
+          <% end %>
+        </select>
+    </p>
+    <p>
+        <label for="geotag_id">Geotag</label>
+        <%= select("photo", "geotag_id", Geotag.find(:all).collect {|p| [ p.description, p.id ] }, {:include_blank => 'None'}) %>
+    </p>
+    <p>
+        <label for="title">Title:</label>
+        <%= text_field "photo", "title" %>
+    </p>
+    <p>
+        <label for="caption">Caption</label>
+        <%= text_field "photo", "caption" %>
+    </p>
+    <p>
+        <label for="is_visible">Visible:</label>
+        True<%= radio_button_tag "photo[is_visible]", "true", true, :id => 'photo_is_visible' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        False<%= radio_button_tag "photo[is_visible]", "false", false, :id => 'photo_is_visible' %>
+    </p>
+    <p>
+        <label for="permalink">Permalink:</label>
+        <%= text_field "photo", "permalink" %>
+    </p>
+    <p>
+        <%= hidden_field "photo", "id" %>
+        <%= submit_tag 'Save' %>
+    </p>
+<% end %>

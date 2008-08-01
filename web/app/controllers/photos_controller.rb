@@ -72,4 +72,27 @@ class PhotosController < ApplicationController
       end
     end
   end
+  
+  def edit
+    @title = "Photo Edit"
+   
+    if request.post?
+      @photo = Photo.find_by_id(params[:photo][:id])
+      @photo.attributes = params[:photo]
+  
+      if @photo.save
+        @log = Log.new
+        @log.user = current_user
+        @log.item = "photo"
+        @log.event = "edit_photo"
+        @log.identifier = @photo.id
+        @log.save!
+        redirect_to :action => "show", :permalink => @photo.album.permalink, :photolink => @photo.permalink 
+      end
+    else
+      @photo = Photo.find_by_permalink(params[:photolink])
+    end
+    
+  end
+  
 end
