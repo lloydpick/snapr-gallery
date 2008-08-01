@@ -1,3 +1,6 @@
+require "image_voodoo"
+require "exifr"
+
 class Image < ActiveRecord::Base
 
   belongs_to :photo
@@ -5,42 +8,35 @@ class Image < ActiveRecord::Base
   has_attachment :content_type => :image, 
                  :storage => :file_system, 
                  :max_size => 5.megabytes,
-                 :resize_to => 's1024x768>',
                  :keep_profile => true,
                  :thumbnails => { 
-                                  :square => 'c75x75',
-                                  :thumbnail => 'c100x75',
-                                  :small => 's240x180>',
-                                  :medium => 's500x375>',
+                                  :square => [75,75],
+                                  :thumbnail => '100x75',
+                                  :small => '240x180>',
+                                  :medium => '500x375>',
+                                  :large => '1024x768>'
                                 }
 
   validates_as_attachment
   @@exif_date_format = '%Y:%m:%d %H:%M:%S'
   cattr_accessor :exif_date_format
+  attr_accessor :skip_resize
   
   def date_taken
-    photo = Magick::Image.read(full_filename).first
-    # the get_exif_by_entry method returns in the format: [["Make", "Canon"]]
-    date = photo.get_exif_by_entry('DateTime')[0][1]
-    if date != "0000:00:00 00:00:00"
-      return DateTime.strptime(date, exif_date_format).strftime("%a %b %d %H:%M")
-    else
-      return false
-    end
+    
+    date = EXIFR::JPEG.new(full_filename).date_time
+    return unless date
+    date
   end
 
   def model
-    photo = Magick::Image.read(full_filename).first
-    # the get_exif_by_entry method returns in the format: [["Make", "Canon"]]
-    model = photo.get_exif_by_entry('Model')[0][1]
+    model = EXIFR::JPEG.new(full_filename).model
     return unless model
     model
   end
   
   def flash
-    photo = Magick::Image.read(full_filename).first
-    # the get_exif_by_entry method returns in the format: [["Make", "Canon"]]
-    flash = photo.get_exif_by_entry('Flash')[0][1]
+    flash = EXIFR::JPEG.new(full_filename).flash
     case flash.to_i
       when 0
         out = "Flash did not fire"
@@ -95,9 +91,7 @@ class Image < ActiveRecord::Base
   end
   
   def make
-    photo = Magick::Image.read(full_filename).first
-    # the get_exif_by_entry method returns in the format: [["Make", "Canon"]]
-    make = photo.get_exif_by_entry('Make')[0][1]
+    make = EXIFR::JPEG.new(full_filename).make
     return unless make
     make
   end

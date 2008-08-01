@@ -1,3 +1,5 @@
+require "exifr"
+
 class PhotosController < ApplicationController
   
   def show
@@ -11,8 +13,7 @@ class PhotosController < ApplicationController
     else
       if @photo.album.id == @album.id
         @image = Image.find_by_id(@photo.image_id)
-        @exif = Magick::Image.read(@image.full_filename).first
-        if @exif.get_exif_by_entry.size > 0
+        if EXIFR::JPEG.new(@image.full_filename)
           @show_exif = true
         else
           @show_exif = false
