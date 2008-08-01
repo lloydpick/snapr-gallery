@@ -411,7 +411,7 @@ module Technoweenie # :nodoc:
             # now compress the original #
             #############################
             with_image do |temp_file|
-              resize_image_or_thumbnail!(temp_file, true)
+              resize_image_or_thumbnail!(temp_file)
             end
             save_to_storage
             @temp_paths.clear
@@ -421,11 +421,11 @@ module Technoweenie # :nodoc:
         end
 
         # Resizes the given processed img object with either the attachment resize options or the thumbnail resize options.
-        def resize_image_or_thumbnail!(img, compress=false)
+        def resize_image_or_thumbnail!(img)
           if (!respond_to?(:parent_id) || parent_id.nil?) && attachment_options[:resize_to] # parent image
-            resize_image(img, attachment_options[:resize_to], compress)
+            resize_image(img, attachment_options[:resize_to])
           elsif thumbnail_resize_options # thumbnail
-            resize_image(img, thumbnail_resize_options, true)
+            resize_image(img, thumbnail_resize_options)
           end
         end
 

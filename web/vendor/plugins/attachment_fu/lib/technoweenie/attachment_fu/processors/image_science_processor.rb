@@ -48,7 +48,11 @@ module Technoweenie # :nodoc:
               if size.is_a?(Fixnum)
                 img.thumbnail(size, &grab_dimensions)
               else
-                img.resize(size[0], size[1], &grab_dimensions)
+                if size[0] == size[1]
+                  img.cropped_thumbnail(size[0], &grab_dimensions)
+                else
+                  img.resize(size[0], size[1], &grab_dimensions)
+                end
               end
             else
               new_size = [img.width, img.height] / size.to_s
