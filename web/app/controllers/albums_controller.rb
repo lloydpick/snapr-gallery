@@ -85,6 +85,12 @@ class AlbumsController < ApplicationController
       @album.attributes = params[:album]
   
       if @album.save
+        @log = Log.new
+        @log.user = current_user
+        @log.item = "album"
+        @log.event = "edit_album"
+        @log.identifier = @album.id
+        @log.save!
         redirect_to :action => "list"
       end
     else
