@@ -13,7 +13,7 @@
         <%= link_to @album.title, { :controller => 'albums', :action => 'show', :permalink => @album.permalink }, { :class => "Seta" } %>
     </h4>
 	<p>
-	    <b><%= @album.photos.count %></b> photos | 
+	    <b><%= count_photos(@album) %></b> photos | 
         <a class="Plain" href="/photos/organize/?start_tab=one_set72157606335556094" title="Edit this set as a batch?">
             Edit
         </a>
