@@ -20,7 +20,6 @@ class Image < ActiveRecord::Base
   validates_as_attachment
   @@exif_date_format = '%Y:%m:%d %H:%M:%S'
   cattr_accessor :exif_date_format
-  attr_accessor :skip_resize
   
   def date_taken
     
