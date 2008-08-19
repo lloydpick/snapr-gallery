@@ -56,7 +56,7 @@ module Technoweenie # :nodoc:
             else
               sigma = 3.8
             end
-            #img = img.sharpen(1, sigma)
+            img = img.sharpen(1, sigma)
             size = size.slice(1..-1)
             img.change_geometry(size.to_s) { |cols, rows, image| image.resize!(cols<1 ? 1 : cols, rows<1 ? 1 : rows) }
           else
@@ -64,9 +64,9 @@ module Technoweenie # :nodoc:
           end
           img.strip! unless attachment_options[:keep_profile]
           if compress && !self.thumbnail
-            self.temp_path = write_to_temp_file(img.to_blob)
+            self.temp_path = write_to_temp_file(img.to_blob {self.quality = 100})
           elsif self.thumbnail
-            self.temp_path = write_to_temp_file(img.to_blob)
+            self.temp_path = write_to_temp_file(img.to_blob {self.quality = 100})
           else
             self.temp_path = write_to_temp_file(img.to_blob)
           end
