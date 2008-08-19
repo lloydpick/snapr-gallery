@@ -12,7 +12,7 @@ class Image < ActiveRecord::Base
                                   :square => 'c75x75',
                                   :thumbnail => 'c100x75',
                                   :small => 's240x180>',
-                                  :medium => '500x375>',
+                                  :medium => 's500x375>',
                                   :large => '1024x768>'
                                 }
 
