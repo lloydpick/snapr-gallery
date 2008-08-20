@@ -1,6 +1,23 @@
 <br clear="all"/>
 <div style="font-size: 12px">
-<% for @geotag in @geotags -%>
-    <%= @geotag.description %> - <%= link_to @geotag.latitude.to_s + ", " + @geotag.longitude.to_s, { :action => 'show', :id => @geotag.id } %><br />
-<% end %>
+    <table width="100%" cellpadding="2" cellspacing="2">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Photos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for @geotag in @geotags -%>
+            <tr>
+                <td><%= link_to @geotag.description, { :action => 'show', :id => @geotag.id } %></td>
+                <td><%= @geotag.latitude.to_s %></td>
+                <td><%= @geotag.longitude.to_s %></td>
+                <td><%= @geotag.photos.count %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
 </div>
