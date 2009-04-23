@@ -4,3 +4,4 @@ nbproject/
 log/*.log
 log/
 *~
+database.yml
