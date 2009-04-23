@@ -17,13 +17,13 @@
             </div>
     	</div>
     	<h4>
-            <%= link_to child.title, { :controller => 'albums', :action => 'show', :permalink => child.permalink }, { :class => "Seta" } %>
+            <%= link_to child.title, album_path(child), { :class => "Seta" } %>
         </h4>
     	<p>
-    	    <b><%= count_photos(child) %></b> photos | 
-            <a class="Plain" href="/photos/organize/?start_tab=one_set72157606335556094" title="Edit this set as a batch?">
-                Edit
-            </a>
+    	    <b><%= count_photos(child) %></b> photos
+            <% if current_user %>
+              | <%= link_to "edit", edit_album_path(child), :class => "Plain" %>
+            <% end %>
         </p>	
     </div>
     <% end -%>

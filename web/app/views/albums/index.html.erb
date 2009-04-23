@@ -13,9 +13,9 @@
         <%= link_to @album.title, album_path(@album), { :class => "Seta" } %>
     </h4>
 	<p>
-	    <b><%= count_photos(@album) %></b> photos | 
+	    <b><%= count_photos(@album) %></b> photos 
         <% if current_user %>
-          <%= link_to "Edit", edit_album_path(@album), :class => :Plain %>
+          | <%= link_to "edit", edit_album_path(@album), :class => :Plain %>
         <% end %>
     </p>	
 </div>

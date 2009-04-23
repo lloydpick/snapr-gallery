@@ -11,7 +11,7 @@
 	            <h1><%= @album.title %></h1>
 				<p class="Links">
 				    <% if @album.parent %>
-				        <%= link_to "Parent Album", { :action => "show", :permalink => @album.parent.permalink } %>
+				        <%= link_to "Parent Album", album_path(@album.parent) %>
                         <img width="1" height="11" alt="" src="/images/subnavi_dots.gif"/>
                     <% end %>
 				    Thumbnails
