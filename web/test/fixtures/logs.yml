@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 20080729231414
+#
+# Table name: logs
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  item       :string(255)
+#  event      :string(255)
+#  identifier :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 # one:

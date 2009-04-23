@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 20080729231414
+#
+# Table name: geotags
+#
+#  id          :integer         not null, primary key
+#  latitude    :float
+#  longitude   :float
+#  zoom        :integer
+#  description :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 # one:

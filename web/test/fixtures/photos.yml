@@ -1,3 +1,22 @@
+# == Schema Information
+# Schema version: 20080729231414
+#
+# Table name: photos
+#
+#  id         :integer         not null, primary key
+#  album_id   :integer
+#  image_id   :integer
+#  path       :string(255)
+#  title      :string(255)
+#  caption    :string(255)
+#  is_visible :boolean         default(TRUE)
+#  position   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  permalink  :string(200)
+#  geotag_id  :integer
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 # one:

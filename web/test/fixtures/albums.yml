@@ -1,3 +1,19 @@
+# == Schema Information
+# Schema version: 20090423150120
+#
+# Table name: albums
+#
+#  id          :integer         not null, primary key
+#  parent_id   :integer         default(0)
+#  title       :string(255)
+#  description :string(255)
+#  position    :integer
+#  is_visible  :boolean         default(TRUE)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  permalink   :string(200)
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 # one:
