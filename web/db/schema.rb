@@ -9,17 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080726162915) do
+ActiveRecord::Schema.define(:version => 20090423161408) do
 
   create_table "albums", :force => true do |t|
-    t.integer  "parent_id"
+    t.integer  "parent_id",                  :default => 0
     t.string   "title"
     t.string   "description"
-    t.integer  "position"
     t.boolean  "is_visible",                 :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "permalink",   :limit => 200
+  end
+
+  create_table "geotags", :force => true do |t|
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "zoom"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "images", :force => true do |t|
@@ -54,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20080726162915) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "permalink",  :limit => 200
+    t.integer  "geotag_id"
   end
 
   create_table "users", :force => true do |t|
