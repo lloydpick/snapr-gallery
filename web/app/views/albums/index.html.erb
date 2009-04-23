@@ -1,0 +1,22 @@
+<br clear="all"/>
+<% for @album in @albums -%>
+<div class="Sets">
+	<div class="SetCase">
+	    <div class="setLinkDiv">
+	        <% if @album.photos.count > 0 %>
+                <% @image = Image.find_by_id(@album.photos.first.image_id) %>
+                <%= link_to image_tag(@image.public_filename(:square)), album_path(@album), { :class => "setLink" } %>
+            <% end %>
+        </div>
+	</div>
+	<h4>
+        <%= link_to @album.title, album_path(@album), { :class => "Seta" } %>
+    </h4>
+	<p>
+	    <b><%= count_photos(@album) %></b> photos | 
+        <% if current_user %>
+          <%= link_to "Edit", edit_album_path(@album), :class => :Plain %>
+        <% end %>
+    </p>	
+</div>
+<% end -%>
