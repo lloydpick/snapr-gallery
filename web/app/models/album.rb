@@ -20,7 +20,6 @@ class Album < ActiveRecord::Base
   has_many :photos, :order => :position
   has_permalink :title
   acts_as_tree :order => "title" 
-  acts_as_list
 
   default_scope :order => "title ASC"
   named_scope :root, :conditions => { :parent_id => 0 }
