@@ -9,19 +9,19 @@
                 <div id="stream_entry" class="<%= entry.event %>">
                     <% if entry.event == "add_album" %>
                         <% album = Album.find_by_id(entry.identifier) %>
-                        <%= entry.user.username %> created a new album <%= link_to album.title, { :controller => 'albums', :action => 'show', :permalink => album.permalink }, { :style => "text-decoration: none" } %>
+                        <%= entry.user.username %> created a new album <%= link_to album.title, album_path(album), { :style => "text-decoration: none" } %>
                     <% elsif entry.event == "edit_album" %>
                         <% album = Album.find_by_id(entry.identifier) %>
-                        <%= entry.user.username %> edited the album <%= link_to album.title, { :controller => 'albums', :action => 'show', :permalink => album.permalink }, { :style => "text-decoration: none" } %>
+                        <%= entry.user.username %> edited the album <%= link_to album.title, album_path(album), { :style => "text-decoration: none" } %>
                     <% elsif entry.event == "add_photo" %>
                         <% photo = Photo.find_by_id(entry.identifier) %>
-                        <%= entry.user.username %> added a new photo <%= link_to photo.title, { :controller => 'photos', :action => 'show', :permalink => photo.album.permalink, :photolink => photo.permalink }, { :style => "text-decoration: none" } %> to <%= link_to photo.album.title, { :controller => 'albums', :action => 'show', :permalink => photo.album.permalink }, { :style => "text-decoration: none" } %>
+                        <%= entry.user.username %> added a new photo <%= link_to photo.title, album_photo_path(album, photo), { :style => "text-decoration: none" } %> to <%= link_to photo.album.title, { :controller => 'albums', :action => 'show', :permalink => photo.album.permalink }, { :style => "text-decoration: none" } %>
                     <% elsif entry.event == "edit_photo" %>
                         <% photo = Photo.find_by_id(entry.identifier) %>
-                        <%= entry.user.username %> edited the photo <%= link_to photo.title, { :controller => 'photos', :action => 'show', :permalink => photo.album.permalink, :photolink => photo.permalink }, { :style => "text-decoration: none" } %>
+                        <%= entry.user.username %> edited the photo <%= link_to photo.title, album_photo_path(album, photo), { :style => "text-decoration: none" } %>
                     <% elsif entry.event == "add_geotag" %>
                         <% geotag = Geotag.find_by_id(entry.identifier) %>
-                        <%= entry.user.username %> created a new geotag location <%= link_to geotag.description, { :controller => 'geotag', :action => 'show', :id => geotag.id }, { :style => "text-decoration: none" } %>
+                        <%= entry.user.username %> created a new geotag location <%= link_to geotag.description, geotag_path(geotag), { :style => "text-decoration: none" } %>
                     <% end %>
                     <span class="time"><%= time_ago_in_words(entry.created_at, true) %> ago</span>
                 </div>

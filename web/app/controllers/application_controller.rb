@@ -48,5 +48,9 @@ class ApplicationController < ActionController::Base
       redirect_to url_for(:controller => :users, :action => :login)
     end
   end
+
+  def set_title(title)
+    @title = title
+  end
   
 end
