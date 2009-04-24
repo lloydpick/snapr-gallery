@@ -3,11 +3,11 @@ require "exifr"
 class PhotosController < ApplicationController
   
   def show
-    @album = Album.find_by_permalink(params[:permalink])
+    @album = Album.find_by_permalink(params[:album_id])
     if not @album
       raise "ZOMG NO ALBUM FOUND!"
     end
-    @photo = Photo.find_by_permalink(params[:photolink])
+    @photo = Photo.find_by_permalink(params[:id])
     if not @photo
       raise "ZOMG NO PHOTO FOUND!"
     else

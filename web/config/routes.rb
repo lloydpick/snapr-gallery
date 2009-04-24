@@ -10,7 +10,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :geotags
   map.resources :albums do |album|
-    album.resources :photos, :has_one => :geotag
+    album.resources :images
+    album.resources :photos do |photo|
+      photo.resources :images
+      photo.resource :geotag
+    end
   end
 
   # Install the default routes as the lowest priority.

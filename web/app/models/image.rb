@@ -1,4 +1,5 @@
 require "exifr"
+require 'mime/types'
 
 class Image < ActiveRecord::Base
 
@@ -16,9 +17,18 @@ class Image < ActiveRecord::Base
                                   :large => '1024x768>'
                                 }
 
+
   validates_as_attachment
   @@exif_date_format = '%Y:%m:%d %H:%M:%S'
   cattr_accessor :exif_date_format
+
+  # Map file extensions to mime types.
+  # Thanks to bug in Flash 8 the content type is always set to application/octet-stream.
+  # From: http://blog.airbladesoftware.com/2007/8/8/uploading-files-with-swfupload
+  def swf_uploaded_data=(data)
+    data.content_type = MIME::Types.type_for(data.original_filename)
+    self.uploaded_data = data
+  end
   
   def date_taken
     

@@ -34,7 +34,7 @@
         <p class="vsThumbnail">
             <span class="photo_container pc_m">
                 <% @image = Image.find_by_id(@album.photos.first.image_id) %>
-                <%= link_to image_tag(@image.public_filename(:small), { :class => "pc_img", :width => 240, :height => 180, :id => "primary_photo_img" } ), { :controller => 'photos', :action => 'show', :permalink => @album.permalink, :photolink => @album.photos.first.permalink }, { :class => "image_link" } %>
+                <%= link_to image_tag(@image.public_filename(:small), { :class => "pc_img", :width => 240, :height => 180, :id => "primary_photo_img" } ), "#", { :class => "image_link" } %>
             </span>
         </p>
 	</div>
@@ -48,7 +48,7 @@
             <% @image = Image.find_by_id(@photo.image_id) %>
             <div class="setThumbs-indv">
                 <span id="photo_thumb2697091480" class="photo_container pc_s">
-                    <%= link_to image_tag(@image.public_filename(:square), { :class => "pc_img", :width => 75, :height => 75 } ), { :controller => 'photos', :action => 'show', :permalink => @album.permalink, :photolink => @photo.permalink }, { :class => "image_link" } %>
+                    <%= link_to image_tag(@image.public_filename(:square), { :class => "pc_img", :width => 75, :height => 75 } ), album_photo_path(@album, @photo), { :class => "image_link" } %>
                 </span>
             </div>
         <% end -%>
