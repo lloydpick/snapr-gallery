@@ -5,3 +5,7 @@ log/*.log
 log/
 *~
 database.yml
+tmp/attachment_fu/*
+tmp/attachment_fu
+tmp/*
+public/images/0000/*
