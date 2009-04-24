@@ -1,25 +1,26 @@
 <%= error_messages_for :geotag %>
 
-<% form_for(:geotag, :url => { :action => 'new' }) do %>
+<% form_for(@geotag, :url => geotags_path) do %>
 
-    <h2>Create New Geotag</h2>
-    <p>
-        <label for="latitude">Latitude:</label>
-        <%= text_field "geotag", "latitude" %>
-    </p>
-    <p>
-        <label for="longitude">Longitude:</label>
-        <%= text_field "geotag", "longitude" %>
-    </p>
-    <p>
-        <label for="zoom">Zoom (1-20):</label>
-        <%= text_field "geotag", "zoom" %>
-    </p>
-    <p>
-        <label for="description">Description:</label>
-        <%= text_field "geotag", "description" %>
-    </p>
-    <p>
-        <%= submit_tag 'Create' %>
-    </p>
+  <h2>Create New Geotag</h2>
+  <p>
+    <label for="latitude">Latitude:</label>
+    <%= text_field "geotag", "latitude" %>
+  </p>
+  <p>
+    <label for="longitude">Longitude:</label>
+    <%= text_field "geotag", "longitude" %>
+  </p>
+  <p>
+    <label for="zoom">Zoom (1-20):</label>
+    <%= text_field "geotag", "zoom" %>
+  </p>
+  <p>
+    <label for="description">Description:</label>
+    <%= text_field "geotag", "description" %>
+  </p>
+  <p>
+    <%= submit_tag 'Create' %>
+  </p>
+
 <% end %>
