@@ -1,4 +1,4 @@
-class GeotagController < ApplicationController
+class GeotagsController < ApplicationController
   
   before_filter :login_required, :only => ["new"]
   
