@@ -25,25 +25,62 @@ class Album < ActiveRecord::Base
   named_scope :root, :conditions => { :parent_id => 0 }
   named_scope :visible, :conditions => { :is_visible => true }
 
-  after_create :create_create_audit
-  after_update :create_edit_audit
+  before_save :setup_permalink
+  after_create :create_audit
+  after_update :edit_audit
 
-  def create_create_audit
-    create_audit("add_album")
+  def setup_permalink
+    if self.parent_id != 0
+      self.permalink = "#{parent.permalink}-#{self.permalink}"
+    end
   end
 
-  def create_edit_audit
-    create_audit("edit_album")
+  def create_audit
+    Log.create_entry(current_user, "album", "add_album", self.id)
   end
 
-  def create_audit(event)
-    log = Log.new
-    log.user = current_user
-    log.item = "album"
-    log.event = event
-    log.identifier = self.id
-    log.save!
+  def edit_audit
+    Log.create_entry(current_user, "album", "edit_album", self.id)
   end
+
+  def first_image(album = nil)
+    look_from = self
+    if album
+      look_from = album
+    end
+    @image = nil
+    
+    if look_from.photos.first
+
+      @image = Image.find_by_id(look_from.photos.first.image_id)
+
+    else
+
+      look_from.children.each do |child|
+        if child.photos.size > 0
+          @image = Image.find_by_id(child.photos.first.image_id)
+          break
+        end
+      end
+
+      if @image == nil
+        look_from.children.each do |child|
+          @image = first_image(child)
+          if @image != nil
+            break
+          end
+        end
+      end
+      
+      @image
+    end
+  end
+
+
+
+
+
+
 
   def to_param
     permalink

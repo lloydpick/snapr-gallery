@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         if session[:redirect]
           redirect_to(session[:redirect])
         else
-          redirect_to url_for :controller => :home, :action => :home
+          redirect_to root_path
         end
         session[:redirect] = nil
       else

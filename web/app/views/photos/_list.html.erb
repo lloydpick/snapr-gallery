@@ -5,11 +5,11 @@
     	<div class="SetCaseSingle">
     	    <div class="setLinkDiv">
                 <% @image = Image.find_by_id(@photo.image_id) %>
-                <%= link_to image_tag(@image.public_filename(:square)), { :controller => 'photos', :action => 'show', :permalink => @photo.album.permalink, :photolink => @photo.permalink }, { :class => "setLink" } %>
+                <%= link_to image_tag(@image.public_filename(:square)), album_photo_path(@photo.album, @photo), { :class => "setLink" } %>
             </div>
     	</div>
     	<h6 style="margin: 0px">
-            <%= link_to @photo.title, { :controller => 'photos', :action => 'show', :permalink => @photo.album.permalink, :photolink => @photo.permalink }, { :class => "Seta" } %>
+            <%= link_to @photo.title, album_photo_path(@photo.album, @photo), { :class => "Seta" } %>
         </h6>
         <p>
     	    <%= @photo.updated_at.strftime("%a %b %d %H:%M") %>

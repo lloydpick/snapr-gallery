@@ -38,6 +38,7 @@ class AlbumsController < ApplicationController
 
   def update
     @album.attributes = params[:album]
+    @album.current_user = current_user
 
     if @album.save
       redirect_to albums_path

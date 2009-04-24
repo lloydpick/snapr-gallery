@@ -4,9 +4,9 @@
     <div class="Sets" style="width: 119px">
     	<div class="SetCase">
     	    <div class="setLinkDiv">
-    	        <% if album.photos.count > 0 %>
-                    <% @image = Image.find_by_id(album.photos.first.image_id) %>
-                    <%= link_to image_tag(@image.public_filename(:square)), { :controller => 'albums', :action => 'show', :permalink => album.permalink }, { :class => "setLink" } %>
+    	        <% if album.first_image %>
+                    <% @image = Image.find_by_id(album.first_image) %>
+                    <%= link_to image_tag(@image.public_filename(:square)), album_path(album), { :class => "setLink" } %>
                 <% end %>
             </div>
     	</div>
@@ -14,10 +14,10 @@
             <%= link_to album.title, album_path(album), { :class => "Seta" } %>
         </h4>
     	<p>
-    	    <b><%= count_photos(album) %></b> photos | 
-            <a class="Plain" href="/photos/organize/?start_tab=one_set72157606335556094" title="Edit this set as a batch?">
-                Edit
-            </a>
+    	    <b><%= count_photos(album) %></b> photos
+            <% if current_user %>
+              | <%= link_to "edit", edit_album_path(album), :class => "Plain" %>
+            <% end %>
         </p>	
     </div>
     <% end -%>

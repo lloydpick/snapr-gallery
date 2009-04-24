@@ -3,8 +3,8 @@
 <div class="Sets">
 	<div class="SetCase">
 	    <div class="setLinkDiv">
-	        <% if @album.photos.count > 0 %>
-                <% @image = Image.find_by_id(@album.photos.first.image_id) %>
+	        <% if @album.first_image %>
+                <% @image = Image.find_by_id(@album.first_image) %>
                 <%= link_to image_tag(@image.public_filename(:square)), album_path(@album), { :class => "setLink" } %>
             <% end %>
         </div>

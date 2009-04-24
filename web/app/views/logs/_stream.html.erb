@@ -15,7 +15,7 @@
                         <%= entry.user.username %> edited the album <%= link_to album.title, album_path(album), { :style => "text-decoration: none" } %>
                     <% elsif entry.event == "add_photo" %>
                         <% photo = Photo.find_by_id(entry.identifier) %>
-                        <%= entry.user.username %> added a new photo <%= link_to photo.title, album_photo_path(album, photo), { :style => "text-decoration: none" } %> to <%= link_to photo.album.title, { :controller => 'albums', :action => 'show', :permalink => photo.album.permalink }, { :style => "text-decoration: none" } %>
+                        <%= entry.user.username %> added a new photo <%= link_to photo.title, album_photo_path(album, photo), { :style => "text-decoration: none" } %> to <%= link_to photo.album.title, album_path(album), { :style => "text-decoration: none" } %>
                     <% elsif entry.event == "edit_photo" %>
                         <% photo = Photo.find_by_id(entry.identifier) %>
                         <%= entry.user.username %> edited the photo <%= link_to photo.title, album_photo_path(album, photo), { :style => "text-decoration: none" } %>

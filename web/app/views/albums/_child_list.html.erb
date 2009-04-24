@@ -10,9 +10,9 @@
     <div class="Sets" style="width: 119px; height: 180px">
     	<div class="SetCase">
     	    <div class="setLinkDiv">
-    	        <% if child.photos.count > 0 %>
-                    <% @image = Image.find_by_id(child.photos.first.image_id) %>
-                    <%= link_to image_tag(@image.public_filename(:square)), { :controller => 'albums', :action => 'show', :permalink => child.permalink }, { :class => "setLink" } %>
+    	        <% if child.first_image %>
+                    <% @image = Image.find_by_id(child.first_image) %>
+                    <%= link_to image_tag(@image.public_filename(:square)), album_path(child), { :class => "setLink" } %>
                 <% end %>
             </div>
     	</div>

@@ -23,7 +23,18 @@ class Photo < ActiveRecord::Base
   belongs_to :geotag
   belongs_to :album
   acts_as_list :scope => :album
-  has_permalink :title 
+  has_permalink :title
+
+  after_create :create_audit
+  after_update :edit_audit
+
+  def create_audit
+    Log.create_entry(User.find(1), "photo", "add_photo", self.id)
+  end
+
+  def edit_audit
+    Log.create_entry(current_user, "photo", "edit_photo", self.id)
+  end
   
   def to_param
     permalink

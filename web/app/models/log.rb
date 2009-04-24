@@ -15,5 +15,14 @@
 class Log < ActiveRecord::Base
   
   belongs_to :user
+
+  def self.create_entry(user, item, event, identifier)
+    log = Log.new
+    log.user = user
+    log.item = item
+    log.event = event
+    log.identifier = identifier
+    log.save!
+  end
   
 end
