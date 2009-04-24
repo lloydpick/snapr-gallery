@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090423161408) do
+ActiveRecord::Schema.define(:version => 20090424184008) do
 
   create_table "albums", :force => true do |t|
     t.integer  "parent_id",                  :default => 0
@@ -20,6 +20,22 @@ ActiveRecord::Schema.define(:version => 20090423161408) do
     t.datetime "updated_at"
     t.string   "permalink",   :limit => 200
   end
+
+  create_table "audits", :force => true do |t|
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "username"
+    t.string   "action"
+    t.text     "changes"
+    t.integer  "version",        :default => 0
+    t.datetime "created_at"
+  end
+
+  add_index "audits", ["auditable_id", "auditable_type"], :name => "auditable_index"
+  add_index "audits", ["created_at"], :name => "index_audits_on_created_at"
+  add_index "audits", ["user_id", "user_type"], :name => "user_index"
 
   create_table "geotags", :force => true do |t|
     t.float    "latitude"
