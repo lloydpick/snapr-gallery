@@ -19,6 +19,6 @@ class Geotag < ActiveRecord::Base
   validates_presence_of :latitude
   validates_presence_of :longitude
   validates_presence_of :zoom
-  validates_presense_of :description
+  validates_presence_of :description
   
 end
