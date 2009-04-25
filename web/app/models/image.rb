@@ -1,3 +1,20 @@
+# == Schema Information
+# Schema version: 20090425105913
+#
+# Table name: images
+#
+#  id           :integer         not null, primary key
+#  parent_id    :integer
+#  content_type :string(255)
+#  filename     :string(255)
+#  thumbnail    :string(255)
+#  size         :integer
+#  width        :integer
+#  height       :integer
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 require "exifr"
 require 'mime/types'
 

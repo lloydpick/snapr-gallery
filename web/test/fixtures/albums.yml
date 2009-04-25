@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090423150120
+# Schema version: 20090425105913
 #
 # Table name: albums
 #
@@ -7,7 +7,6 @@
 #  parent_id   :integer         default(0)
 #  title       :string(255)
 #  description :string(255)
-#  position    :integer
 #  is_visible  :boolean         default(TRUE)
 #  created_at  :datetime
 #  updated_at  :datetime
