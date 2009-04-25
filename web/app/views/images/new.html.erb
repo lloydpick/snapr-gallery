@@ -1,33 +1,6 @@
 <%= error_messages_for :image %>
 
-<% form_for(:image, album_images_path(@album), :html => { :multipart => true }) do |f| -%>
-    <p>
-        <label for="image">Upload an Image:</label>
-        <%= f.file_field :uploaded_data %>
-    </p>
-    <p>
-        <label for="title">Title:</label>
-        <%= text_field "photo", "title" %>
-    </p>
-    <p>
-        <label for="caption">Caption:</label>
-        <%= text_field "photo", "caption" %>
-    </p>
-    <p>
-        <label for="is_visible">Visible:</label>
-        True<%= radio_button_tag "photo[is_visible]", "true", true, :id => 'photo_is_visible' %>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        False<%= radio_button_tag "photo[is_visible]", "false", false, :id => 'photo_is_visible' %>
-    </p>
-    <%= hidden_field "photo", "position", { :value => @next } %>
-  <p>
-    <%= submit_tag 'Create' %>
-  </p>
-<% end -%>
-<br />
-<hr />
-
-<p>SWFUpload button allows uploading more than one image at a time. This section adapted from index.php in the swfupload application demo. In a final application the Graceful Degradation plugin would show or hide the traditional or swfupload divisions based on whether the swfupload program successfully initialized.</p>
+<p>The button below allows uploading more than one image at a time. As the files are uploaded you will shown the thumbnails as they are generated. Do not navigate away from this page while uploading, as doing so will cancel the upload process.</p>
 
 <script type='text/javascript'>
   var swfu;
