@@ -5,7 +5,7 @@ class GeotagsController < ApplicationController
 
   def index
     set_title("Listing Geotag Locations")
-    @geotags = Geotag.find(:all, :order => "description DESC")
+    @geotags = Geotag.find(:all)
 
     respond_to do |format|
       format.html
