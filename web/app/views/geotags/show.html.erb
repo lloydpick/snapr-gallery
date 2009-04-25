@@ -1,4 +1,15 @@
 <div style="width: 800px">
-    <h1>Showing Geotag Location</h1>
-    <%= @map.div(:width => 800, :height => 500) %>
+  <% if @geotag %><h1><%= @geotag.description %></h1>
+  <% else %><h1>Showing Geotag Location</h1><% end %>
+  <%= @map.div(:width => 800, :height => 500) %>
 </div>
+
+<% if @geotag %>
+  <h2>Photo's at this location</h2>
+  <div style="padding-left: 7px; padding-bottom: 50px">
+    <% Photo.find_all_by_geotag_id(@geotag).each do |photo| %>
+      <% image = Image.find_by_id(photo.image_id) %>
+      <%= link_to image_tag(image.public_filename(:square), { :class => "pc_img", :width => 75, :height => 75 } ), album_photo_path(photo.album, photo), { :class => "image_link" } %>
+    <% end %>
+  </div>
+<% end %>
