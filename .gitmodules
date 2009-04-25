@@ -7,3 +7,6 @@
 [submodule "web/vendor/plugins/acts_as_audited"]
 	path = web/vendor/plugins/acts_as_audited
 	url = git://github.com/collectiveidea/acts_as_audited.git
+[submodule "web/vendor/plugins/acts_as_list"]
+	path = web/vendor/plugins/acts_as_list
+	url = git://github.com/rails/acts_as_list.git
