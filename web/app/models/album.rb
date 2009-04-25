@@ -27,7 +27,7 @@ class Album < ActiveRecord::Base
   named_scope :root, :conditions => { :parent_id => 0 }
   named_scope :visible, :conditions => { :is_visible => true }
 
-  before_save :setup_permalink
+  before_create :setup_permalink
 
   def setup_permalink
     if self.parent_id != 0
