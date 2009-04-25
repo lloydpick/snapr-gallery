@@ -48,7 +48,7 @@
     			            <ul class="site_nav_menu_buttons">
     			                <li class="no_menu_li">
     			                    <span>
-                                        <a href="/">Home</a>
+                                        <%= link_to "Home", root_path %>
                                     </span>
                                 </li>
                                 <li class="no_menu_li">
@@ -64,20 +64,22 @@
 			                </ul>
                         </div>
                     </td>
-                    <td id="search_header_form_td" style="padding-bottom: 2px;">
-                        <form id="headersearchform">
-                            <%= text_field "search", "field", {  :id => "header_search_q", :class => "Box", :style => "color: rgb(153, 153, 153);" } %>
-                        </form>
-                    </td>
-                    <td width="72" id="search_header_button_td">
-                        <ul class="site_nav_menu_buttons">
-    		                <li class="no_menu_li">
-    		                    <span>
-                                    <a href="#">Search</a>
-                                </span>
-                            </li>
-                        </ul>       
-                    </td>
+                    <% if current_user %>
+                      <td width="200" id="search_header_button_td">
+                          <ul class="site_nav_menu_buttons">
+                              <li class="no_menu_li">
+                                  <span>
+                                      <%= link_to "New Album", new_album_path %>
+                                  </span>
+                              </li>
+                              <li class="no_menu_li">
+                                  <span>
+                                      <%= link_to "New Geotag", new_geotag_path %>
+                                  </span>
+                              </li>
+                          </ul>
+                      </td>
+                    <% end %>
                 </tr>
             </tbody>
         </table>

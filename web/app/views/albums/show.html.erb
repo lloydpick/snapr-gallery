@@ -25,14 +25,14 @@
               <% end %>
 				<p class="Links">
 				    <% if @album.parent %>
-				        <%= link_to "Parent Album", album_path(@album.parent) %>
-                        <img width="1" height="11" alt="" src="/images/subnavi_dots.gif"/>
+				      <%= link_to "Parent Album", album_path(@album.parent) %>
+                    <% else %>
+                      <%= link_to "Albums", albums_path %>
                     <% end %>
-				    Thumbnails
-                    <img width="1" height="11" alt="" src="/images/subnavi_dots.gif"/>
-			        Detail
-                    <img width="1" height="11" alt="" src="/images/subnavi_dots.gif"/>
-		            Comments
+				    <% if current_user %>
+                      <img width="1" height="11" alt="" src="/images/subnavi_dots.gif"/>
+                      <%= link_to "Upload Images", new_album_image_path(@album) %>
+                    <% end %>
 		        </p>
 	        </td>
         </tr>
