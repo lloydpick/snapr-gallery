@@ -15,17 +15,33 @@ class GeotagsController < ApplicationController
   end
 
   def show
-    set_title("Showing Geotag Location - " + @geotag.description)
-    @map = GMap.new("map_div")
-    @map.control_init(:large_map => true,:map_type => true)
-    @map.set_map_type_init(GMapType::G_HYBRID_MAP);
-    @map.center_zoom_init([@geotag.latitude,@geotag.longitude],@geotag.zoom)
-    @map.overlay_init(GMarker.new([@geotag.latitude,@geotag.longitude], :title => "Geotag Location", :info_window => @geotag.description))
+    if @geotag
+      set_title("Showing Geotag Location - " + @geotag.description)
+      @map = GMap.new("map_div")
+      @map.control_init(:large_map => true,:map_type => true)
+      @map.set_map_type_init(GMapType::G_HYBRID_MAP);
+      @map.center_zoom_init([@geotag.latitude,@geotag.longitude],@geotag.zoom)
+      @map.overlay_init(GMarker.new([@geotag.latitude,@geotag.longitude], :title => "Geotag Location", :info_window => @geotag.description))
 
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @geotag }
-      format.json { render :json => @geotag }
+      respond_to do |format|
+        format.html
+        format.xml { render :xml => @geotag }
+        format.json { render :json => @geotag }
+      end
+    elsif @coord
+      lat, long = @coord
+      lat = lat.to_s
+      long = long.to_s
+      set_title("Showing Geotag Location - " + lat + ", " + long)
+      @map = GMap.new("map_div")
+      @map.control_init(:large_map => true,:map_type => true)
+      @map.set_map_type_init(GMapType::G_HYBRID_MAP);
+      @map.center_zoom_init([lat,long],15)
+      @map.overlay_init(GMarker.new([lat,long], :title => "Geotag Location"))
+
+      respond_to do |format|
+        format.html
+      end
     end
   end
   
@@ -72,9 +88,16 @@ class GeotagsController < ApplicationController
   def load_objects
     @geotag = Geotag.find_by_id(params[:id])
     if params[:photo_id] && params[:album_id]
-      @geotag = Photo.find_by_permalink_and_album_id(params[:photo_id], Album.find_by_permalink(params[:album_id]).id).geotag
+      @photo = Photo.find_by_permalink_and_album_id(params[:photo_id], Album.find_by_permalink(params[:album_id]).id)
+      @geotag = @photo.geotag
+      if @geotag == nil
+        @image = Image.find_by_id(@photo.image_id)
+        if @image.gps
+          @coord = @image.gps
+        end
+      end
     end
-    redirect_to geotags_path unless @geotag
+    redirect_to geotags_path unless @geotag || @coord
   end
   
 end

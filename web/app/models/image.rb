@@ -31,7 +31,6 @@ class Image < ActiveRecord::Base
   end
   
   def date_taken
-    
     date = EXIFR::JPEG.new(full_filename).date_time
     return unless date
     date
@@ -102,6 +101,23 @@ class Image < ActiveRecord::Base
     make = EXIFR::JPEG.new(full_filename).make
     return unless make
     make
+  end
+
+  def gps
+    lat = EXIFR::JPEG.new(full_filename).gps_latitude
+    lat_ref = EXIFR::JPEG.new(full_filename).gps_latitude_ref
+    long = EXIFR::JPEG.new(full_filename).gps_longitude
+    long_ref = EXIFR::JPEG.new(full_filename).gps_longitude_ref
+
+    lat = lat[0].to_f + (lat[1].to_f / 60) + (lat[2].to_f / 3600)
+    long = long[0].to_f + (long[1].to_f / 60) + (long[2].to_f / 3600)
+
+    lat = lat * -1 if lat_ref == "S"      # (N is +, S is -)
+    long = long * -1 if long_ref == "W"   # (W is -, E is +)
+
+    gps = [lat, long]
+    return unless gps
+    gps
   end
    
 end

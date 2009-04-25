@@ -29,29 +29,47 @@
             <li class="exif">None Available</li>
         </ul>
     <% end %>
-    <% if @photo.geotag != nil %>
-    <h4>Geotagging Information</h4>
-    <ul>
-        <% if @photo.geotag.description != nil %>
+    <% if @photo.geotag != nil || @image.gps != nil %>
+      <h4>Geotagging Information</h4>
+      <% if @photo.geotag %>
+        <ul>
+          <% if @photo.geotag.description != nil %>
             <li class="exif"><%= @photo.geotag.description %></li>
-        <% end %>
-        <li class="exif">Latitude: <%= @photo.geotag.latitude %></li>
-        <li class="exif">Longitude: <%= @photo.geotag.longitude %></li>
-        <li style="list-style-type: none" class="exif"><%= link_to 'View on Google Maps', album_photo_geotag_path(@photo.album, @photo) %></li>
-    </ul>
+          <% end %>
+          <li class="exif">Latitude: <%= @photo.geotag.latitude %></li>
+          <li class="exif">Longitude: <%= @photo.geotag.longitude %></li>
+          <li style="list-style-type: none" class="exif"><%= link_to 'View on Google Maps', album_photo_geotag_path(@photo.album, @photo) %></li>
+        </ul>
+      <% else %>
+        <ul>
+          <% lat, long = @image.gps %>
+          <li class="exif">Latitude: <%= lat %></li>
+          <li class="exif">Longitude: <%= long %></li>
+          <li style="list-style-type: none" class="exif"><%= link_to 'View on Google Maps', album_photo_geotag_path(@photo.album, @photo) %></li>
+        </ul>
+      <% end %>
     <% end %>
 </div>
 <div style="width: 500px">
     <h1><%= @photo.title %></h1>
     <%= link_to image_tag(@image.public_filename(:medium)), album_photo_image_path(@photo.album, @photo, @image), { :style => "background-color: white" } %>
-    <% if (@photo.first?) || (not @photo.last?) %>
-        <div style="float: right">
-            <%= link_to image_tag("/images/right.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position+1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
-        </div>
+    <% if !@photo.first? && !@photo.last? %>
+      <div style="float: right">
+        <%= link_to image_tag("/images/right.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position+1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
+      </div>
+      <div>
+        <%= link_to image_tag("/images/left.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position-1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
+      </div>
+    <% elsif @photo.first? && !@photo.last? %>
+      <div style="float: right">
+        <%= link_to image_tag("/images/right.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position+1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
+      </div>
+    <% elsif !@photo.first? && @photo.last? %>
+      <div>
+        <%= link_to image_tag("/images/left.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position-1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
+      </div>
     <% end %>
-    <% if (@photo.last?) || (not @photo.first?) %>
-        <div>
-            <%= link_to image_tag("/images/left.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position-1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
-        </div>
+    <% if not @photo.last? %>
+        
     <% end %>
 </div>
