@@ -8,7 +8,7 @@
                 <img width="48" height="48" alt="to your photostream page" src="/images/buddy.gif"/>
             </td>
             <td class="Section">
-	            <h1><%= @album.title %></h1>
+	            <h1><%= @album.title %> <span style="font-size: 10px"><%= in_place_editor_field :album, 'description' %></span></h1>
 				<p class="Links">
 				    <% if @album.parent %>
 				        <%= link_to "Parent Album", album_path(@album.parent) %>
