@@ -4,27 +4,48 @@
     <div class="middle">
         <div class="title" title="Move along, nothing stolen from facebook here, move along...">Site Stream</div>
         <div class="log">
-            <% @logs = Log.find(:all, :limit => 20, :order => "id DESC") %>
+            <% @logs = Audit.find(:all, :limit => 20, :order => "id DESC") %>
             <% for entry in @logs -%>
-                <div id="stream_entry" class="<%= entry.event %>">
-                    <% if entry.event == "add_album" %>
-                        <% album = Album.find_by_id(entry.identifier) %>
-                        <%= entry.user.username %> created a new album <%= link_to album.title, album_path(album), { :style => "text-decoration: none" } %>
-                    <% elsif entry.event == "edit_album" %>
-                        <% album = Album.find_by_id(entry.identifier) %>
-                        <%= entry.user.username %> edited the album <%= link_to album.title, album_path(album), { :style => "text-decoration: none" } %>
-                    <% elsif entry.event == "add_photo" %>
-                        <% photo = Photo.find_by_id(entry.identifier) %>
-                        <%= entry.user.username %> added a new photo <%= link_to photo.title, album_photo_path(album, photo), { :style => "text-decoration: none" } %> to <%= link_to photo.album.title, album_path(album), { :style => "text-decoration: none" } %>
-                    <% elsif entry.event == "edit_photo" %>
-                        <% photo = Photo.find_by_id(entry.identifier) %>
-                        <%= entry.user.username %> edited the photo <%= link_to photo.title, album_photo_path(album, photo), { :style => "text-decoration: none" } %>
-                    <% elsif entry.event == "add_geotag" %>
-                        <% geotag = Geotag.find_by_id(entry.identifier) %>
-                        <%= entry.user.username %> created a new geotag location <%= link_to geotag.description, geotag_path(geotag), { :style => "text-decoration: none" } %>
-                    <% end %>
-                    <span class="time"><%= time_ago_in_words(entry.created_at, true) %> ago</span>
-                </div>
+              <% if entry.auditable_type == "Album" %>
+                <% album = Album.find_by_id(entry.auditable_id) %>
+                <% if entry.action == "create" %>
+                  <div id="stream_entry" class="add_album">
+                    New album created <%= link_to album.title, album_path(album), { :style => "text-decoration: none" } %>
+                    <span class="time"><%= time_ago_in_words(album.created_at, true) %> ago</span>
+                  </div>
+                <% elsif entry.action == "update" %>
+                  <div id="stream_entry" class="edit_album">
+                    Album updated <%= link_to album.title, album_path(album), { :style => "text-decoration: none" } %>
+                    <span class="time"><%= time_ago_in_words(album.updated_at, true) %> ago</span>
+                  </div>
+                <% end %>
+              <% elsif entry.auditable_type == "Geotag" %>
+                <% geotag = Geotag.find_by_id(entry.auditable_id) %>
+                <% if entry.action == "create" %>
+                  <div id="stream_entry" class="add_geotag">
+                    New geotag created <%= link_to geotag.description, geotag_path(geotag), { :style => "text-decoration: none" } %>
+                    <span class="time"><%= time_ago_in_words(geotag.created_at, true) %> ago</span>
+                  </div>
+                <% elsif entry.action == "update" %>
+                  <div id="stream_entry" class="edit_geotag">
+                    Geotag updated <%= link_to geotag.description, geotag_path(geotag), { :style => "text-decoration: none" } %>
+                    <span class="time"><%= time_ago_in_words(geotag.updated_at, true) %> ago</span>
+                  </div>
+                <% end %>
+              <% elsif entry.auditable_type == "Photo" %>
+                <% photo = Photo.find_by_id(entry.auditable_id) %>
+                <% if entry.action == "create" %>
+                  <div id="stream_entry" class="add_photo">
+                    New photo created <%= link_to photo.title, album_photo_path(photo.album, photo), { :style => "text-decoration: none" } %>
+                    <span class="time"><%= time_ago_in_words(photo.created_at, true) %> ago</span>
+                  </div>
+                <% elsif entry.action == "update" %>
+                  <div id="stream_entry" class="edit_photo">
+                    Photo updated <%= link_to photo.title, album_photo_path(photo.album, photo), { :style => "text-decoration: none" } %>
+                    <span class="time"><%= time_ago_in_words(photo.updated_at, true) %> ago</span>
+                  </div>
+                <% end %>
+              <% end %>
             <% end -%>
         </div>
     </div>
