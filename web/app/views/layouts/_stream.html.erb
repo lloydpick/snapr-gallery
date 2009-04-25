@@ -36,7 +36,7 @@
                 <% photo = Photo.find_by_id(entry.auditable_id) %>
                 <% if entry.action == "create" %>
                   <div id="stream_entry" class="add_photo">
-                    New photo created <%= link_to photo.title, album_photo_path(photo.album, photo), { :style => "text-decoration: none" } %>
+                    New photo uploaded <%= link_to photo.title, album_photo_path(photo.album, photo), { :style => "text-decoration: none" } %>
                     <span class="time"><%= time_ago_in_words(photo.created_at, true) %> ago</span>
                   </div>
                 <% elsif entry.action == "update" %>
