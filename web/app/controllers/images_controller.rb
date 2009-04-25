@@ -79,7 +79,7 @@
 
   def load_objects
     @album = Album.find_by_permalink(params[:album_id])
-    @photo = Photo.find_by_permalink(params[:photo_id])
+    @photo = Photo.find_by_permalink_and_album_id(params[:photo_id], @album.id)
     @image = Image.find_by_id(params[:id])
   end
   

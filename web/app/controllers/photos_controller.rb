@@ -38,8 +38,8 @@ class PhotosController < ApplicationController
   private
 
   def load_object
-    @photo = Photo.find_by_permalink(params[:id])
     @album = Album.find_by_permalink(params[:album_id])
+    @photo = Photo.find_by_permalink_and_album_id(params[:id], @album.id)
     redirect_to @album unless @photo
   end
   
