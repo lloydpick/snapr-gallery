@@ -15,5 +15,10 @@
 class Geotag < ActiveRecord::Base
   
   has_many :photos, :order => :position
+
+  validates_presence_of :latitude
+  validates_presence_of :longitude
+  validates_presence_of :zoom
+  validates_presense_of :description
   
 end

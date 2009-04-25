@@ -13,5 +13,9 @@
 
 class User < ActiveRecord::Base
 
+  validates_presence_of :username
+  validates_presence_of :emailaddress
+  validates_presence_of :password
+  validates_length_of :password, :is => 32
   
 end

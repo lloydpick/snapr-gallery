@@ -24,6 +24,9 @@ class Photo < ActiveRecord::Base
   belongs_to :album
   acts_as_list :scope => :album
   has_permalink :title, :scope => :album_id
+
+  validates_presence_of :album_id
+  validates_presence_of :image_id
   
   def to_param
     permalink
