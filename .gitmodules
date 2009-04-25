@@ -16,3 +16,6 @@
 [submodule "web/vendor/plugins/in_place_editing"]
 	path = web/vendor/plugins/in_place_editing
 	url = git://github.com/rails/in_place_editing.git
+[submodule "web/vendor/plugins/permalink_fu"]
+	path = web/vendor/plugins/permalink_fu
+	url = git://github.com/technoweenie/permalink_fu.git
