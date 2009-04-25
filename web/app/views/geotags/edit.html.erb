@@ -1,0 +1,9 @@
+<%= error_messages_for :geotag %>
+
+<% form_for(@geotag, :url => geotag_path, :method => :put) do %>
+
+  <h2>Edit Geotag</h2>
+  <%= render :partial => "form" %>
+  <p><%= submit_tag 'Save' %></p>
+    
+<% end %>

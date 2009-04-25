@@ -1,7 +1,7 @@
 class GeotagsController < ApplicationController
   
   before_filter :login_required, :only => ["new"]
-  before_filter :load_objects, :only => ["show"]
+  before_filter :load_objects, :only => ["show", "edit", "update"]
 
   def index
     set_title("Listing Geotag Locations")
@@ -45,6 +45,24 @@ class GeotagsController < ApplicationController
       redirect_to geotag_path(@geotag)
     else
       @geotag.valid?
+    end
+  end
+
+  def edit
+    set_title("Editing Geotag #{@geotag.id}")
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @geotag }
+      format.json { render :json => @geotag }
+    end
+  end
+
+  def update
+    @geotag.attributes = params[:geotag]
+
+    if @geotag.save
+      redirect_to geotags_path
     end
   end
 
