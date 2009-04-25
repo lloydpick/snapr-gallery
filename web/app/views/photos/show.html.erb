@@ -37,7 +37,7 @@
         <% end %>
         <li class="exif">Latitude: <%= @photo.geotag.latitude %></li>
         <li class="exif">Longitude: <%= @photo.geotag.longitude %></li>
-        <li style="list-style-type: none" class="exif"><%= link_to 'View on Google Maps', "#" %></li>
+        <li style="list-style-type: none" class="exif"><%= link_to 'View on Google Maps', album_photo_geotag_path(@photo.album, @photo) %></li>
     </ul>
     <% end %>
 </div>

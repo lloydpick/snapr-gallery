@@ -5,6 +5,7 @@
 
   def show
     set_title("Showing full size")
+    @go_wide = true
 
     respond_to do |format|
       format.html

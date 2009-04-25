@@ -1,6 +1,6 @@
 <%= error_messages_for :photo %>
 
-<% form_for(:photo, :url => { :action => 'edit', :id => @photo.id }) do %>
+<% form_for(@photo, :url => album_photo_path(@photo.album, @photo)) do %>
 
     <h2>Edit Photo</h2>
     <p>
@@ -8,9 +8,9 @@
         <select id="photo_album_id" name="photo[album_id]">
           <option value="">None</option>
           <% if @photo.album %>
-              <%= options_from_tree_for_select(Album.find_roots, :id, :title, @photo.album.id) %>
+              <%= options_from_tree_for_select(Album.root, :id, :title, @photo.album.id) %>
           <% else %>
-              <%= options_from_tree_for_select(Album.find_roots, :id, :title) %>
+              <%= options_from_tree_for_select(Album.root, :id, :title) %>
           <% end %>
         </select>
     </p>

@@ -1,92 +1,46 @@
 require "exifr"
 
 class PhotosController < ApplicationController
-  
+
+  before_filter :load_object
+
   def show
-    @album = Album.find_by_permalink(params[:album_id])
-    if not @album
-      raise "ZOMG NO ALBUM FOUND!"
-    end
-    @photo = Photo.find_by_permalink(params[:id])
-    if not @photo
-      raise "ZOMG NO PHOTO FOUND!"
-    else
-      if @photo.album.id == @album.id
-        @image = Image.find_by_id(@photo.image_id)
-        if EXIFR::JPEG.new(@image.full_filename)
-          @show_exif = true
-        else
-          @show_exif = false
-        end
-        @title = "Photo - " + @photo.title
-        
-      else
-        raise "PHOTO NOT PART OF ALBUM"
-      end
-    end
-  end
-  
-  def show_full
-    @go_wide = true
-    @album = Album.find_by_permalink(params[:permalink])
-    if not @album
-      raise "ZOMG NO ALBUM FOUND!"
-    end
-    @photo = Photo.find_by_permalink(params[:photolink])
-    if not @photo
-      raise "ZOMG NO PHOTO FOUND!"
-    else
-      if @photo.album.id == @album.id
-        @image = Image.find_by_id(@photo.image_id)
-        @title = "Full Photo - " + @photo.title
-      else
-        raise "PHOTO NOT PART OF ALBUM"
-      end
-    end
-  end
-  
-  def location
-    
-    @album = Album.find_by_permalink(params[:permalink])
-    if not @album
-      raise "ZOMG NO ALBUM FOUND!"
-    end
-    @photo = Photo.find_by_permalink(params[:photolink])
-    if not @photo
-      raise "ZOMG NO PHOTO FOUND!"
-    else
-      if @photo.album.id == @album.id
-        @image = Image.find_by_id(@photo.image_id)
-        @title = "Photo Location - " + @photo.title
-        if @photo.geotag != nil
-          @map = GMap.new("map_div")
-          @map.control_init(:large_map => true,:map_type => true)
-          @map.set_map_type_init(GMapType::G_HYBRID_MAP);
-          @map.center_zoom_init([@photo.geotag.latitude,@photo.geotag.longitude],@photo.geotag.zoom)
-          @map.overlay_init(GMarker.new([@photo.geotag.latitude,@photo.geotag.longitude], :title => "Photo Location", :info_window => @photo.caption))
-        else
-          redirect_to :action => "show", :permalink => @photo.album.permalink, :photolink => @photo.permalink 
-        end
-      else
-        raise "PHOTO NOT PART OF ALBUM"
-      end
+    set_title("Photo - " + @photo.title)
+
+    @image = Image.find_by_id(@photo.image_id)
+    @show_exif = false
+    @show_exif = true if EXIFR::JPEG.new(@image.full_filename)
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @image }
+      format.json { render :json => @image }
     end
   end
   
   def edit
-    @title = "Photo Edit"
-   
-    if request.post?
-      @photo = Photo.find_by_id(params[:photo][:id])
-      @photo.attributes = params[:photo]
-  
-      if @photo.save
-        redirect_to :action => "show", :permalink => @photo.album.permalink, :photolink => @photo.permalink 
-      end
-    else
-      @photo = Photo.find_by_permalink(params[:photolink])
+    set_title("Edit Photo - " + @photo.title)
+
+    respond_to do |format|
+      format.html
     end
-    
+  end
+
+  def update
+    @photo.attributes = params[:photo]
+
+    if @photo.save
+      redirect_to album_photo_path(@photo.album, @photo)
+    end
+  end
+
+
+  private
+
+  def load_object
+    @photo = Photo.find_by_permalink(params[:id])
+    @album = Album.find_by_permalink(params[:album_id])
+    redirect_to @album unless @photo
   end
   
 end
