@@ -2,7 +2,7 @@ class AlbumsController < ApplicationController
 
   in_place_edit_for :album, :description
 
-  before_filter :login_required, :only => ["new", "create", "edit", "update"]
+  before_filter :login_required, :only => ["new", "create", "edit", "update", "set_album_description"]
   before_filter :load_objects, :only => ["show", "edit", "update"]
 
   # Public Actions

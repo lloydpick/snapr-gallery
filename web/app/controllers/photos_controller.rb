@@ -2,7 +2,10 @@ require "exifr"
 
 class PhotosController < ApplicationController
 
-  before_filter :load_object
+  in_place_edit_for :photo, :title
+
+  before_filter :load_object, :only => ["show", "edit", "update"]
+  before_filter :login_required, :except => ["show"]
 
   def show
     set_title("Photo - " + @photo.title)

@@ -51,25 +51,26 @@
     <% end %>
 </div>
 <div style="width: 500px">
+  <% if current_user %>
+    <h1><%= in_place_editor_field :photo, 'title' %></h1>
+  <% else %>
     <h1><%= @photo.title %></h1>
-    <%= link_to image_tag(@image.public_filename(:medium)), album_photo_image_path(@photo.album, @photo, @image), { :style => "background-color: white" } %>
-    <% if !@photo.first? && !@photo.last? %>
-      <div style="float: right">
-        <%= link_to image_tag("/images/right.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position+1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
-      </div>
-      <div>
-        <%= link_to image_tag("/images/left.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position-1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
-      </div>
-    <% elsif @photo.first? && !@photo.last? %>
-      <div style="float: right">
-        <%= link_to image_tag("/images/right.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position+1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
-      </div>
-    <% elsif !@photo.first? && @photo.last? %>
-      <div>
-        <%= link_to image_tag("/images/left.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position-1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
-      </div>
-    <% end %>
-    <% if not @photo.last? %>
-        
-    <% end %>
+  <% end %>
+  <%= link_to image_tag(@image.public_filename(:medium)), album_photo_image_path(@photo.album, @photo, @image), { :style => "background-color: white" } %>
+  <% if !@photo.first? && !@photo.last? %>
+    <div style="float: right">
+      <%= link_to image_tag("/images/right.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position+1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
+    </div>
+    <div>
+      <%= link_to image_tag("/images/left.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position-1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
+    </div>
+  <% elsif @photo.first? && !@photo.last? %>
+    <div style="float: right">
+      <%= link_to image_tag("/images/right.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position+1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
+    </div>
+  <% elsif !@photo.first? && @photo.last? %>
+    <div>
+      <%= link_to image_tag("/images/left.gif"), album_photo_path(@photo.album, Photo.find_by_position(@photo.position-1, :conditions => { :album_id => @photo.album.id })), { :style => "font-size: 11px; text-decoration: none; background-color: white; padding: 5px" } %>
+    </div>
+  <% end %>
 </div>
