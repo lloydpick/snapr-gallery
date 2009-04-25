@@ -71,6 +71,9 @@ class GeotagsController < ApplicationController
 
   def load_objects
     @geotag = Geotag.find_by_id(params[:id])
+    if params[:photo_id] && params[:album_id]
+      @geotag = Photo.find_by_permalink_and_album_id(params[:photo_id], Album.find_by_permalink(params[:album_id]).id).geotag
+    end
     redirect_to geotags_path unless @geotag
   end
   
