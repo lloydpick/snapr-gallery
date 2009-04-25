@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090424184008) do
+ActiveRecord::Schema.define(:version => 20090425105913) do
 
   create_table "albums", :force => true do |t|
     t.integer  "parent_id",                  :default => 0
@@ -54,15 +54,6 @@ ActiveRecord::Schema.define(:version => 20090424184008) do
     t.integer  "size"
     t.integer  "width"
     t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "logs", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "item"
-    t.string   "event"
-    t.integer  "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

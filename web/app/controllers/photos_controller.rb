@@ -81,12 +81,6 @@ class PhotosController < ApplicationController
       @photo.attributes = params[:photo]
   
       if @photo.save
-        @log = Log.new
-        @log.user = current_user
-        @log.item = "photo"
-        @log.event = "edit_photo"
-        @log.identifier = @photo.id
-        @log.save!
         redirect_to :action => "show", :permalink => @photo.album.permalink, :photolink => @photo.permalink 
       end
     else

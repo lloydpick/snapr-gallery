@@ -26,21 +26,11 @@ class Album < ActiveRecord::Base
   named_scope :visible, :conditions => { :is_visible => true }
 
   before_save :setup_permalink
-  after_create :create_audit
-  after_update :edit_audit
 
   def setup_permalink
     if self.parent_id != 0
       self.permalink = "#{parent.permalink}-#{self.permalink}"
     end
-  end
-
-  def create_audit
-    Log.create_entry(current_user, "album", "add_album", self.id)
-  end
-
-  def edit_audit
-    Log.create_entry(current_user, "album", "edit_album", self.id)
   end
 
   def first_image(album = nil)
@@ -75,12 +65,6 @@ class Album < ActiveRecord::Base
       @image
     end
   end
-
-
-
-
-
-
 
   def to_param
     permalink

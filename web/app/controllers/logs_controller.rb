@@ -1,2 +1,0 @@
-class LogsController < ApplicationController
-end
