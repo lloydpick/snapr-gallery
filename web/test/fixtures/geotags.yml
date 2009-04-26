@@ -14,8 +14,13 @@
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# one:
-#   column: value
+one:
+  id: 1
+  latitude: 28.376133
+  longitude: -81.549396
+  zoom: 19
+  description: "Walt Disney World - Epcot - Entrance"
+
 #
 # two:
 #   column: value

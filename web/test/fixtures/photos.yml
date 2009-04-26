@@ -19,8 +19,16 @@
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# one:
-#   column: value
-#
+one:
+  id: 1
+  album_id: 1
+  image_id: 1
+  title: "Photo Title"
+  caption: "Photo Caption"
+  is_visible: true
+  position: 1
+  permalink: "photo-title"
+  geotag_id: 1
+
 # two:
 #   column: value
