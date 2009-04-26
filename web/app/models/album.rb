@@ -15,13 +15,13 @@
 
 class Album < ActiveRecord::Base
 
-  attr_accessor :current_user
   has_many :photos, :order => :position
   has_permalink :title
   acts_as_tree :order => "title"
 
   validates_presence_of :title
   validates_presence_of :description
+  validates_numericality_of :parent_id, :only_integer => true
 
   default_scope :order => "title ASC"
   named_scope :root, :conditions => { :parent_id => 0 }

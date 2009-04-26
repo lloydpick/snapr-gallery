@@ -20,6 +20,9 @@ class Geotag < ActiveRecord::Base
   validates_presence_of :longitude
   validates_presence_of :zoom
   validates_presence_of :description
+  validates_numericality_of :latitude
+  validates_numericality_of :longitude
+  validates_numericality_of :zoom, :only_integer => true
 
   default_scope :order => "description ASC"
   
