@@ -57,7 +57,6 @@ class AlbumsController < ApplicationController
 
   def create
     @album = Album.new(params[:album])
-    @album.current_user = current_user
 
     # Does it pass all validation?
     if @album.save
