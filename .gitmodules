@@ -19,3 +19,6 @@
 [submodule "web/vendor/plugins/attachment_fu"]
 	path = web/vendor/plugins/attachment_fu
 	url = git://github.com/limi/attachment_fu.git
+[submodule "web/vendor/plugins/ym4r_gm"]
+	path = web/vendor/plugins/ym4r_gm
+	url = git://github.com/davec/ym4r_gm.git
