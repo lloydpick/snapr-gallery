@@ -16,9 +16,6 @@
 [submodule "web/vendor/plugins/permalink_fu"]
 	path = web/vendor/plugins/permalink_fu
 	url = git://github.com/technoweenie/permalink_fu.git
-[submodule "web/vendor/plugins/ym4r_gem"]
-	path = web/vendor/plugins/ym4r_gem
-	url = git://github.com/ewildgoose/ym4r_gm.git
 [submodule "web/vendor/plugins/attachment_fu"]
 	path = web/vendor/plugins/attachment_fu
 	url = git://github.com/limi/attachment_fu.git
