@@ -28,10 +28,8 @@ class Photo < ActiveRecord::Base
   validates_presence_of :album_id
   validates_presence_of :image_id
   validates_presence_of :title
-  validates_presence_of :position
   validates_numericality_of :album_id, :only_integer => true, :allow_nil => false
   validates_numericality_of :image_id, :only_integer => true, :allow_nil => false
-  validates_numericality_of :position, :only_integer => true, :allow_nil => false
   
   def to_param
     permalink
