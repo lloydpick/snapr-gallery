@@ -1,4 +1,4 @@
-<% if (@album.children.size > 0) && (@album.photos.size > 0) %>
+<% if (@album.children.visible.size > 0) && (@album.photos.size > 0) %>
     <%= render :partial => "albums/child_list" %>
 <% end %>
 <table id="SubNav" width="500" cellspacing="0">
@@ -40,7 +40,7 @@
 </table>
 <% if @album.photos.size > 0 %>
 <div id="ViewSet">
-    <% if @album.children.size > 0 %>
+    <% if @album.children.visible.size > 0 %>
 	    <div class="vsDetails" style="margin-right: 17px; margin-left: 15px">
     <% else %>
         <div class="vsDetails" style="margin-right: 17px; margin-left: 15px">
@@ -52,7 +52,7 @@
             </span>
         </p>
 	</div>
-    <% if @album.children.size > 0 %>
+    <% if @album.children.visible.size > 0 %>
 	    <div class="vsThumbs" style="width: 650px; float: none">
 	<% else %>
         <div class="vsThumbs" style="width: 100%; float: none">

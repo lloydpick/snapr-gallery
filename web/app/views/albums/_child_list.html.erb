@@ -3,28 +3,28 @@
 <% else %>
 <div id="child_albums" style="float: right; width: 120px; margin-top: 25px">
 <% end %>
-    <% if @album.children.size > 0%>
+    <% if @album.children.visible.size > 0%>
     <h3 style="margin-top: 0px">Sub-Albums</h3>
     <% end %>
-    <% @album.children.each do |child| %>
-    <div class="Sets" style="width: 119px; height: 180px">
-    	<div class="SetCase">
-    	    <div class="setLinkDiv">
-    	        <% if child.first_image %>
-                    <% @image = Image.find_by_id(child.first_image) %>
-                    <%= link_to image_tag(@image.public_filename(:square)), album_path(child), { :class => "setLink" } %>
-                <% end %>
-            </div>
-    	</div>
-    	<h4>
-            <%= link_to child.title, album_path(child), { :class => "Seta" } %>
-        </h4>
-    	<p>
-    	    <b><%= count_photos(child) %></b> photos
-            <% if current_user %>
-              | <%= link_to "edit", edit_album_path(child), :class => "Plain" %>
-            <% end %>
-        </p>	
-    </div>
+    <% @album.children.visible.each do |child| %>
+      <div class="Sets" style="width: 119px; height: 180px">
+          <div class="SetCase">
+              <div class="setLinkDiv">
+                  <% if child.first_image %>
+                      <% @image = Image.find_by_id(child.first_image) %>
+                      <%= link_to image_tag(@image.public_filename(:square)), album_path(child), { :class => "setLink" } %>
+                  <% end %>
+              </div>
+          </div>
+          <h4>
+              <%= link_to child.title, album_path(child), { :class => "Seta" } %>
+          </h4>
+          <p>
+              <b><%= count_photos(child) %></b> photos
+              <% if current_user %>
+                | <%= link_to "edit", edit_album_path(child), :class => "Plain" %>
+              <% end %>
+          </p>
+      </div>
     <% end -%>
 </div>
